@@ -3,7 +3,7 @@
 //
 
 #include <vector>
-#include "Position.h"
+#include "CPosition.h"
 #include "Field.h"
 
 using std::vector;
@@ -11,22 +11,22 @@ using std::vector;
 Field::Field(int height, int width) {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
-            list.push_back(new Position(i,j));
+            list.push_back(new CPosition(i,j));
         }
     }
     defaultAmerican = *list.begin();
     defaultRussian = *list.rend();
 }
 
-Position *Field::getDefaultRussian() {
+CPosition *Field::getDefaultRussian() {
     return defaultRussian;
 }
 
-Position *Field::getDefaultAmerican() {
+CPosition *Field::getDefaultAmerican() {
     return defaultAmerican;
 }
 
-vector<Position*> &Field::getList() {
+vector<CPosition*> &Field::getList() {
     return list;
 }
 

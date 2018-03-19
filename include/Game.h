@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "Field.h"
+#include "Player.h"
 
 class Game {
 private:
@@ -15,6 +17,7 @@ public:
     Game(int height, int width);
 
     void step();
+    Player* getCurrentPlayer();
 };
 
 

@@ -4,34 +4,27 @@
 
 
 #include "Player.h"
-#include "Units.h"
-#include "Fractions.h"
-#include "Fraction.h"
-#include "IUnit.h"
 
-void sert(int a)
-{
-
+Player::Player(Fraction *fraction){
+    Player::fraction = fraction;
 }
 
-void Player::addWarior() {}
+void Player::addWarior() {
+    Player::_units.push_back(fraction->create_warrior());
+}
 
-//Player::Player(Fraction *fraction){
-//    Player::fraction = fraction;
-//}
-//
-//void Player::addArcher()
-//{
-//    _units.push_back(fraction->create_archer());
-//}
-//void Player::addFlyer()
-//{
-//    _units.push_back(fraction->create_flayer());
-//}
-//
-//void Player::step() {
-//    for (IUnit *unit : _units) {
-//        unit->step();
-//    }
-//}
+void Player::addArcher()
+{
+    Player::_units.push_back(fraction->create_archer());
+}
+void Player::addFlyer()
+{
+    Player::_units.push_back(fraction->create_flayer());
+}
+
+void Player::step() {
+    for (IUnit *unit : _units) {
+        unit->step();
+    }
+}
 

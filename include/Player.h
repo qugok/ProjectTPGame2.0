@@ -6,6 +6,10 @@
 #pragma once
 
 
+#include "IUnit.h"
+#include "Fraction.h"
+#include <vector>
+
 
 class Player {
 private:
@@ -19,5 +23,3 @@ public:
     void addFlyer();
     void step();
 };
-
-void sert(int a);

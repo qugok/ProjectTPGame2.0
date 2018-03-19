@@ -4,18 +4,19 @@
 
 #pragma once
 
+#include "IUnit.h"
 
-class Position { // позиция на поле
+class CPosition { // позиция на поле
     int x, y;
-    GenericUnit* unit;
+    IUnit* unit;
 public:
-    Position(int x, int y);
+    CPosition(int x, int y);
 
     void setUnit(IUnit *unit);
 
     void clear();
 
-    int distanceTo(Position *position);
+    int distanceTo(CPosition *position);
 };
 
 

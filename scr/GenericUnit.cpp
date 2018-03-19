@@ -3,7 +3,7 @@
 //
 
 #include "GenericUnit.h"
-#include "Position.h"
+#include "CPosition.h"
 #include "Life.h"
 #include "IUnit.h"
 #include "Field.h"
@@ -12,7 +12,7 @@
 #include <vector>
 using std::vector;
 
-GenericUnit::GenericUnit(Position *_position, const Life &_life, bool _isMoved, bool _isHited, bool _isFlying, int _attackPoints,
+GenericUnit::GenericUnit(CPosition *_position, const Life &_life, bool _isMoved, bool _isHited, bool _isFlying, int _attackPoints,
             int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage)
         : _position(_position), _life(_life), _isMoved(_isMoved), _isHited(_isHited), _isFlying(_isFlying),
           _attackPoints(_attackPoints), _defencePoints(_defencePoints), _moveDistance(_moveDistance),
@@ -26,18 +26,18 @@ bool GenericUnit::isFlying() {
     return _isFlying;
 }
 
-void GenericUnit::moveTo(Position *position) {
+void GenericUnit::moveTo(CPosition *position) {
     this->getPosition()->clear();
     position->setUnit(this);
     this->_position = position;
     _isMoved = true;
 }
 
-vector<Position *> GenericUnit::canMoveTo(Field *field) {
-    vector<Position* > answer;
+vector<CPosition *> GenericUnit::canMoveTo(Field *field) {
+    vector<CPosition* > answer;
     if (_isMoved)
         return answer;
-    for (Position* position : field->getList())
+    for (CPosition* position : field->getList())
     {
         if(position->distanceTo(this->getPosition()) <= this->getMoveDistance())
             answer.push_back(position);
@@ -78,7 +78,7 @@ Life& GenericUnit::getLife() {
     return _life;
 }
 
-Position *GenericUnit::getPosition() {
+CPosition *GenericUnit::getPosition() {
     return _position;
 }
 

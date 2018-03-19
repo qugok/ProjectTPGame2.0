@@ -4,16 +4,22 @@
 
 #pragma once
 
+#include "Field.h"
+#include "Avatar.h"
+#include "Life.h"
+
+class CPosition;
+
 class IUnit {
 public:
     /*
      * перейти на определённую позицию
      */
-    virtual void moveTo (Position* position) = 0;
+    virtual void moveTo (CPosition* position) = 0;
     /*
      * находим множество позиций, куда мы можем пойти
      */
-    virtual std::vector<Position*>  canMoveTo(Field* field) = 0;
+    virtual std::vector<CPosition*>  canMoveTo(Field* field) = 0;
     /*
      * атакуем unit
      * он получает соответствующий урон
@@ -65,7 +71,7 @@ public:
     /*
      * получаем текущую позицию
      */
-    virtual Position* getPosition() = 0;
+    virtual CPosition* getPosition() = 0;
     /*
      * проверяем, умер ли юнит
      */

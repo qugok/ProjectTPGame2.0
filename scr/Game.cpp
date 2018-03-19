@@ -3,8 +3,6 @@
 //
 
 #include "Game.h"
-#include "Field.h"
-#include "Player.h"
 #include "Fractions.h"
 
 Game::Game(int height, int width) {
@@ -15,9 +13,31 @@ Game::Game(int height, int width) {
 }
 
 void Game::step() {
-    currentPlayer++;
-    
+    currentPlayer^=1;
+    switch (currentPlayer)
+    {
+        case 0:
+            _Russian->step();
+            break;
+        case 1:
+            _American->step();
+            break;
+        default:break;
+    }
 }
+
+Player* Game::getCurrentPlayer() {
+    switch (currentPlayer)
+    {
+        case 0:
+            return _Russian;
+        case 1:
+            return _American;
+        default:break;
+    }
+}
+
+
 
 
 //#endif //PROJECTTPGAME_GAME_H

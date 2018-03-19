@@ -4,13 +4,17 @@
 
 #pragma once
 
+#include "Fraction.h"
+#include "Units.h"
+
+class CPosition;
 
 class Russian : public Fraction {
 private:
-    Position* defaultPosition;
+    CPosition* defaultPosition;
 public:
-    explicit Russian(Position *position);
-    Warrior *create_warior();
+    explicit Russian(CPosition *position);
+    Warrior *create_warrior();
 
     Archer *create_archer();
 
@@ -19,10 +23,10 @@ public:
 
 class American : public Fraction {
 private:
-    Position* defaultPosition;
+    CPosition* defaultPosition;
 public:
-    explicit American(Position* position);
-    Warrior *create_warior();
+    explicit American(CPosition* position);
+    Warrior *create_warrior();
 
     Archer *create_archer();
 

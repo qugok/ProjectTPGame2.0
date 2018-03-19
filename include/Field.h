@@ -4,22 +4,24 @@
 
 #pragma once
 
+#include <vector>
 
+class CPosition;
 
 class Field {
 private:
-    std::vector<Position*> list;
-    Position* defaultRussian;
-    Position* defaultAmerican;
+    std::vector<CPosition*> list;
+    CPosition* defaultRussian;
+    CPosition* defaultAmerican;
 public:
 
     Field(int height, int width);
 
-    Position *getDefaultRussian();
+    CPosition *getDefaultRussian();
 
-    Position *getDefaultAmerican();
+    CPosition *getDefaultAmerican();
 
-    std::vector<Position*> &getList();
+    std::vector<CPosition*> &getList();
 };
 
 

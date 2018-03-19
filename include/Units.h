@@ -4,23 +4,25 @@
 
 #pragma once
 
+#include "GenericUnit.h"
+#include "CPosition.h"
 
 class Warrior : public GenericUnit {
 
 public:
-    Warrior(Position *_position, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
+    Warrior(CPosition *_position, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
             int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
 
-    explicit Warrior(Position *_position);
+    explicit Warrior(CPosition *_position);
 };
 
 class Flyer : public GenericUnit {
 
 public:
-    Flyer(Position *_position, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
+    Flyer(CPosition *_position, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
           int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
 
-    explicit Flyer(Position *_position);
+    explicit Flyer(CPosition *_position);
 
 
 };
@@ -28,7 +30,7 @@ public:
 class Archer : public GenericUnit {
 
 public:
-    Archer(Position *_position, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
+    Archer(CPosition *_position, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
            int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
-    explicit Archer(Position *_position);
+    explicit Archer(CPosition *_position);
 };
