@@ -2,10 +2,7 @@
 // Created by iesek on 16.03.2018.
 //
 
-#ifndef PROJECTTPGAME_CCONSTANTS_H
-#define PROJECTTPGAME_CCONSTANTS_H
-
-#include "IUnit.h"
+#pragma once
 
 namespace Constants {
     namespace Russian {
@@ -94,4 +91,4 @@ namespace Constants {
     }
 }
 
-#endif //PROJECTTPGAME_CCONSTANTS_H
+

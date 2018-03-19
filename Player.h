@@ -2,11 +2,11 @@
 // Created by iesek on 19.03.2018.
 //
 
-#ifndef PROJECTTPGAME_PLAYER_H
-#define PROJECTTPGAME_PLAYER_H
 
 #include "IUnit.h"
 #include "Factories.h"
+
+#pragma once
 
 class Player {
 private:
@@ -28,9 +28,13 @@ public:
     {
         _units.push_back(fraction->create_flayer());
     }
+
+    void step() {
+        for (IUnit *unit : _units) {
+            unit->step();
+        }
+    }
 };
 
 
-//TODO class Fraction
-
-#endif //PROJECTTPGAME_PLAYER_H
+//#endif //PROJECTTPGAME_PLAYER_H

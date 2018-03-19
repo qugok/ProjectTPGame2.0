@@ -2,10 +2,10 @@
 // Created by iesek on 13.03.2018.
 //
 
-#pragma once
-
 #include <vector>
 #include "Position.h"
+
+#pragma once
 using std::vector;
 
 class Field {
@@ -39,4 +39,4 @@ public:
 };
 
 
-#endif //PROJECTTPGAME_FIELD_H
+//#endif //PROJECTTPGAME_FIELD_H

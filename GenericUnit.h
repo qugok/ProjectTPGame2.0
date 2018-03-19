@@ -1,10 +1,11 @@
 //
 // Created by iesek on 13.03.2018.
 //
-#pragma once;
 
 #include "IUnit.h"
 #include "CConstants.h"
+
+#pragma once
 
 class GenericUnit : public IUnit {
 private:
@@ -109,4 +110,4 @@ public:
     }
 };
 
-#endif //PROJECTTPGAME_UNIT_H
+//#endif //PROJECTTPGAME_UNIT_H

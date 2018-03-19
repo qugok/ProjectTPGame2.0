@@ -1,6 +1,7 @@
 //
 // Created by iesek on 13.03.2018.
 //
+
 #pragma once
 
 #include <vector>
@@ -8,6 +9,8 @@
 #include <cmath>
 #include <memory>
 #include "Field.h"
+#include "Position.h"
+
 
 using std::vector;
 using std::set;
@@ -134,4 +137,4 @@ public:
         return m_instance;
     }
 };
-#endif //PROJECTTPGAME_UNIT_H
+//#endif //PROJECTTPGAME_UNIT_H

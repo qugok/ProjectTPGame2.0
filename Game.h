@@ -2,23 +2,31 @@
 // Created by iesek on 19.03.2018.
 //
 
-#pragma once
 
 #include "Field.h"
-//#include "Player.h"
+#include "Player.h"
+
+#pragma once
+
 
 class Game {
 private:
     Field* field;
     Player* _American;
     Player* _Russian;
+    bool currentPlayer = 0;
 public:
     Game(int height, int width) {
         field = new Field(height, width);
-        field.
-        _American = new Player(new American());
+        _American = new Player(new American(field->getDefaultAmerican()));
+        _Russian = new Player(new Russian(field->getDefaultRussian()));
+    }
+
+    void step() {
+        currentPlayer++;
+
     }
 };
 
 
-#endif //PROJECTTPGAME_GAME_H
+//#endif //PROJECTTPGAME_GAME_H

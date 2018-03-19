@@ -2,10 +2,11 @@
 // Created by iesek on 13.03.2018.
 //
 
-#pragma once
 
 #include "GenericUnit.h"
 #include "CConstants.h"
+
+#pragma once
 
 class Warrior : public GenericUnit {
 
@@ -58,4 +59,4 @@ public:
 
 
 };
-#endif //PROJECTTPGAME_UNITS_H
+//#endif //PROJECTTPGAME_UNITS_H

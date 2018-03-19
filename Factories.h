@@ -2,10 +2,10 @@
 // Created by iesek on 19.03.2018.
 //
 
-#ifndef PROJECTTPGAME_FACTORIES_H
-#define PROJECTTPGAME_FACTORIES_H
 
 #include "Units.h"
+
+#pragma once
 
 class Fraction {
 public:
@@ -15,11 +15,11 @@ public:
     virtual ~Fraction(){}
 };
 
-class Russain : public Fraction {
+class Russian : public Fraction {
 private:
     Position* defaultPosition;
 public:
-    explicit Russain(Position* position)
+    explicit Russian(Position *position)
     {
         defaultPosition = position;
     }
@@ -69,4 +69,4 @@ public:
     }
 };
 
-#endif //PROJECTTPGAME_FACTORIES_H
+//#endif //PROJECTTPGAME_FACTORIES_H

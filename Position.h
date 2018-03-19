@@ -2,9 +2,10 @@
 // Created by iesek on 19.03.2018.
 //
 
-#pragma once
 
 #include "IUnit.h"
+
+#pragma once
 
 class Position { // позиция на поле
     int x, y;
@@ -26,4 +27,4 @@ public:
 };
 
 
-#endif //PROJECTTPGAME_POSITION_H
+//#endif //PROJECTTPGAME_POSITION_H
