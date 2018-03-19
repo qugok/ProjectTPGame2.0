@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include "IUnit.h"
-
 class GenericUnit : public IUnit {
 private:
     Position* _position;

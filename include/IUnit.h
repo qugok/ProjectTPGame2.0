@@ -4,12 +4,6 @@
 
 #pragma once
 
-#include <vector>
-#include "Position.h"
-#include "Field.h"
-#include "Avatar.h"
-#include "Life.h"
-
 class IUnit {
 public:
     /*

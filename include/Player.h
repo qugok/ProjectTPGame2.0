@@ -6,8 +6,6 @@
 #pragma once
 
 
-#include "IUnit.h"
-#include "Fraction.h"
 
 class Player {
 private:

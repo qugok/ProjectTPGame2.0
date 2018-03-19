@@ -4,6 +4,7 @@
 
 #pragma once
 
+
 class Fraction {
 public:
     virtual Archer* create_archer() = 0;

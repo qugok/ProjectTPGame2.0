@@ -3,7 +3,7 @@ project(ProjectTPGame)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(./include)
 
 aux_source_directory(${PROJECT_SOURCE_DIR}/scr SOURSES)
 

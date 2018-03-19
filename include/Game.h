@@ -13,7 +13,7 @@ private:
     bool currentPlayer;
 public:
     Game(int height, int width);
-    
+
     void step();
 };
 

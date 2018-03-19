@@ -3,7 +3,7 @@
 //
 
 #pragma once
-#include "GenericUnit.h"
+
 
 class Position { // позиция на поле
     int x, y;
