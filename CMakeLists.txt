@@ -3,4 +3,8 @@ project(ProjectTPGame)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(ProjectTPGame main.cpp GenericUnit.h IUnit.h Field.h Units.h CConstants.h Player.h Factories.h Position.h Game.h)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+aux_source_directory(${PROJECT_SOURCE_DIR}/scr SOURSES)
+
+add_executable(ProjectTPGame ${SOURSES})
