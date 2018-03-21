@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <iostream>
+
 class Life {
 private:
     int currentLife;
@@ -12,6 +14,8 @@ public:
     Life (int maxLife);
     bool isAlife();
     void getDamage (int damage);
+
+    friend std::ostream &operator<<(std::ostream &out, const Life &life);
 };
 
 //#endif //PROJECTTPGAME_LIFE_H

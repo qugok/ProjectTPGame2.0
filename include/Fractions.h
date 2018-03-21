@@ -12,24 +12,34 @@ class CPosition;
 class Russian : public Fraction {
 private:
     CPosition* defaultPosition;
+    Player *_player;
 public:
-    explicit Russian(CPosition *position);
+    Russian(CPosition *position, Player *player);
     Warrior *create_warrior();
 
     Archer *create_archer();
 
     Flyer *create_flayer();
+
+    CPosition *getDefaultPosition() override;
+
+    ~Russian() override;
 };
 
 class American : public Fraction {
 private:
     CPosition* defaultPosition;
+    Player *_player;
 public:
-    explicit American(CPosition* position);
+    American(CPosition *position, Player *player);
     Warrior *create_warrior();
 
     Archer *create_archer();
 
     Flyer *create_flayer();
+
+    CPosition *getDefaultPosition() override;
+
+    ~American() override;
 };
 

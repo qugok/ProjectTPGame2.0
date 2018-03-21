@@ -7,4 +7,6 @@ include_directories(./include)
 
 aux_source_directory(${PROJECT_SOURCE_DIR}/scr SOURSES)
 
+add_subdirectory(tests)
+
 add_executable(ProjectTPGame ${SOURSES})

@@ -4,8 +4,7 @@
 
 
 #include "CPosition.h"
-#include "IUnit.h"
-#include <iostream>
+
 CPosition::CPosition(int x, int y) : x(x), y(y) , unit(nullptr) {}
 
 void CPosition::setUnit(IUnit *unit) {
@@ -20,5 +19,20 @@ int CPosition::distanceTo(CPosition *position) {
     return abs(position->x - this->x) + abs(position->y - this->y);
 }
 
+std::ostream &operator<<(std::ostream &out, CPosition &position) {
+    out << "x: " << position.x << "\ty: " << position.y;
+    if (position.unit != nullptr)
+        out << "\tunit: " << position.unit;
+    else
+        out << "\t\t";
+    return out;
+}
 
+bool CPosition::empty() {
+    return unit == nullptr;
+}
+
+IUnit *CPosition::getUnit() const {
+    return unit;
+}
 //#endif //PROJECTTPGAME_POSITION_H

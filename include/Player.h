@@ -11,15 +11,21 @@
 #include <vector>
 
 
+
 class Player {
 private:
     std::vector<IUnit*> _units;
     Fraction* fraction;
-    //TODO реализация Player
 public:
-    Player(Fraction *fraction);
+    Fraction *getFraction();
+
+    explicit Player(Fraction *fraction);
     void addWarior();
     void addArcher();
     void addFlyer();
     void step();
+
+    const std::vector<IUnit *> &getUnits() const;
+
+    bool dead();
 };

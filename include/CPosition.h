@@ -14,9 +14,16 @@ public:
 
     void setUnit(IUnit *unit);
 
+    IUnit *getUnit() const;
+
     void clear();
 
+    bool empty();
+
     int distanceTo(CPosition *position);
+
+    friend std::ostream &operator<<(std::ostream &out, CPosition &position);
+
 };
 
 

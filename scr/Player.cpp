@@ -23,8 +23,27 @@ void Player::addFlyer()
 }
 
 void Player::step() {
-    for (IUnit *unit : _units) {
+    for (int i = 0; i < _units.size();) {
+        IUnit *unit = _units[i];
         unit->step();
+        if (unit->dead()) {
+            unit->getPosition()->clear();
+            delete unit;
+            _units.erase(_units.begin() + i);
+        } else
+            i++;
     }
+}
+
+bool Player::dead() {
+    return _units.empty();
+}
+
+const std::vector<IUnit *> &Player::getUnits() const {
+    return _units;
+}
+
+Fraction *Player::getFraction() {
+    return fraction;
 }
 

@@ -8,33 +8,29 @@
 Game::Game(int height, int width) {
     field = new Field(height, width);
     currentPlayer = false;
-    _American = new Player(new American(field->getDefaultAmerican()));
-    _Russian = new Player(new Russian(field->getDefaultRussian()));
+    _American = new Player(new American(field->getDefaultAmerican(), _American));
+    _Russian = new Player(new Russian(field->getDefaultRussian(), _Russian));
 }
 
 void Game::step() {
     currentPlayer^=1;
-    switch (currentPlayer)
-    {
-        case 0:
-            _Russian->step();
-            break;
-        case 1:
-            _American->step();
-            break;
-        default:break;
-    }
+    currentPlayer ? _Russian->step() : _American->step();
 }
 
 Player* Game::getCurrentPlayer() {
-    switch (currentPlayer)
-    {
-        case 0:
-            return _Russian;
-        case 1:
-            return _American;
-        default:break;
-    }
+    return currentPlayer ? _Russian : _American;
+}
+
+Player *Game::getOtherPlayer() {
+    return currentPlayer ? _American : _Russian;
+}
+
+bool Game::finished() {
+    return _American->dead() || _Russian->dead();
+}
+
+Field *Game::getField() const {
+    return field;
 }
 
 

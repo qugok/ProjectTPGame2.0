@@ -11,5 +11,7 @@ public:
     virtual Archer* create_archer() = 0;
     virtual Flyer* create_flayer() = 0;
     virtual Warrior* create_warrior() = 0;
+
+    virtual CPosition *getDefaultPosition() = 0;
     virtual ~Fraction(){}
 };

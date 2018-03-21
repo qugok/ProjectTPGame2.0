@@ -17,7 +17,13 @@ public:
     Game(int height, int width);
 
     void step();
+
+    Field *getField() const;
     Player* getCurrentPlayer();
+
+    Player *getOtherPlayer();
+
+    bool finished();
 };
 
 

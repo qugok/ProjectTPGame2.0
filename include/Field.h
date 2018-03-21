@@ -5,7 +5,7 @@
 #pragma once
 
 #include <vector>
-
+#include <iostream>
 class CPosition;
 
 class Field {
@@ -17,11 +17,15 @@ public:
 
     Field(int height, int width);
 
+    Field(const std::vector<CPosition *> &positions);
+
     CPosition *getDefaultRussian();
 
     CPosition *getDefaultAmerican();
 
     std::vector<CPosition*> &getList();
+
+    friend std::ostream &operator<<(std::ostream &out, const Field &field);
 };
 
 

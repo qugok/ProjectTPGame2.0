@@ -4,22 +4,21 @@
 
 #include "GenericUnit.h"
 #include "CPosition.h"
-#include "Life.h"
-#include "IUnit.h"
-#include "Field.h"
-#include "Avatar.h"
 
-#include <vector>
 using std::vector;
 
-GenericUnit::GenericUnit(CPosition *_position, const Life &_life, bool _isMoved, bool _isHited, bool _isFlying, int _attackPoints,
-            int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage)
-        : _position(_position), _life(_life), _isMoved(_isMoved), _isHited(_isHited), _isFlying(_isFlying),
+GenericUnit::GenericUnit(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited,
+                         bool _isFlying, int _attackPoints,
+                         int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage)
+        : _position(_position), _player(player), _life(_life), _isMoved(_isMoved), _isHited(_isHited),
+          _isFlying(_isFlying),
           _attackPoints(_attackPoints), _defencePoints(_defencePoints), _moveDistance(_moveDistance),
-          _attackDiatance(_attackDiatance), _counterattackDamage(_counterattackDamage) {}
+          _attackDiatance(_attackDiatance), _counterattackDamage(_counterattackDamage) { _position->setUnit(this); }
 
 bool GenericUnit::canAttack(IUnit *unit)  {
-    return unit->getPosition()->distanceTo(this->getPosition()) && !_isHited;
+    return unit == nullptr ||
+           unit->getPosition()->distanceTo(this->getPosition()) && !_isHited && unit->getPlayer() != _player;
+
 }
 
 bool GenericUnit::isFlying() {
@@ -39,7 +38,8 @@ vector<CPosition *> GenericUnit::canMoveTo(Field *field) {
         return answer;
     for (CPosition* position : field->getList())
     {
-        if(position->distanceTo(this->getPosition()) <= this->getMoveDistance())
+        if (position->distanceTo(this->getPosition()) <= this->getMoveDistance() && position->empty() &&
+            position != field->getDefaultRussian() && position != field->getDefaultAmerican())
             answer.push_back(position);
     }
     return answer;
@@ -98,6 +98,39 @@ Avatar *GenericUnit::getAvatar() {
 void GenericUnit::setAvatar(Avatar *avatar) {
     _avatar = avatar;
 }
+
+std::ostream &operator<<(std::ostream &out, IUnit *unit) {
+    out << unit->getLife();
+    return out;
+}
+
+vector<IUnit *> GenericUnit::canAttack(Field *field) {
+    vector<IUnit *> answer;
+    for (CPosition *position : field->getList()) {
+        if (!position->empty() && canAttack(position->getUnit()) && position != field->getDefaultRussian() &&
+            position != field->getDefaultAmerican()) {
+            answer.push_back(position->getUnit());
+        }
+    }
+    return answer;
+}
+
+Player *GenericUnit::getPlayer() {
+    return _player;
+}
+
+bool GenericUnit::isMoved() {
+    return _isMoved;
+}
+
+bool GenericUnit::isHited() {
+    return _isHited;
+}
+
+GenericUnit::~GenericUnit() = default;
+
+
+
 
 
 //#endif //PROJECTTPGAME_UNIT_H

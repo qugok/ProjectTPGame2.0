@@ -7,8 +7,11 @@
 #include "Field.h"
 #include "Avatar.h"
 #include "Life.h"
+#include <iostream>
 
 class CPosition;
+
+class Player;
 
 class IUnit {
 public:
@@ -25,6 +28,12 @@ public:
      * он получает соответствующий урон
      */
     virtual void attack(IUnit* unit) = 0;
+
+    /*
+     * ищем юнитов, которых можем атаковать
+     */
+    virtual std::vector<IUnit *> canAttack(Field *field) = 0;
+
     /*
      * проверяем, можем ли мы атаковать unit
      */
@@ -48,6 +57,12 @@ public:
      * получаем значение атаки
      */
     virtual int getAttack() = 0;
+
+    /*
+     * узнаем чей это юнит
+     */
+    virtual Player *getPlayer() = 0;
+
     /*
      * получаем значение защиты
      */
@@ -80,13 +95,19 @@ public:
      * является ли юнит летающим
      */
     virtual bool isFlying() = 0;
+
+    virtual bool isMoved() = 0;
+
+    virtual bool isHited() = 0;
     /*
      * следующий ход
      */
     virtual void step() = 0;
 
-    ~IUnit() = default;
+    virtual ~IUnit() = default;
+
 };
 
+std::ostream &operator<<(std::ostream &out, IUnit *unit);
 
 //#endif //PROJECTTPGAME_UNIT_H
