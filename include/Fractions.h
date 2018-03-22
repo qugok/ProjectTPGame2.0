@@ -15,11 +15,12 @@ private:
     Player *_player;
 public:
     Russian(CPosition *position, Player *player);
-    Warrior *create_warrior();
 
-    Archer *create_archer();
+    Warrior *create_warrior() override;
 
-    Flyer *create_flayer();
+    Archer *create_archer() override;
+
+    Flyer *create_flayer() override;
 
     CPosition *getDefaultPosition() override;
 
@@ -32,11 +33,12 @@ private:
     Player *_player;
 public:
     American(CPosition *position, Player *player);
-    Warrior *create_warrior();
 
-    Archer *create_archer();
+    Warrior *create_warrior() override;
 
-    Flyer *create_flayer();
+    Archer *create_archer() override;
+
+    Flyer *create_flayer() override;
 
     CPosition *getDefaultPosition() override;
 

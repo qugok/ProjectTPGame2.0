@@ -23,6 +23,7 @@ int main() {
         game.getOtherPlayer()->addArcher();
     }
 //    cout << *game.getField()<<"\n";
+    game.step();
     while (!game.finished()) {
         cout << "start of step\n";
         vector<IUnit *> units = game.getCurrentPlayer()->getUnits();

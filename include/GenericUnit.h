@@ -27,37 +27,37 @@ public:
                 int _attackPoints,
                 int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
 
-    bool canAttack(IUnit *unit);
+    bool canAttack(IUnit *unit) override;
 
-    bool isFlying();
+    bool isFlying() override;
 
-    void moveTo(CPosition *position);
+    void moveTo(CPosition *position) override;
 
-    std::vector<CPosition *> canMoveTo(Field *field);
+    std::vector<CPosition *> canMoveTo(Field *field) override;
 
-    void attack(IUnit *unit);
+    void attack(IUnit *unit) override;
 
-    void defenceFrom(IUnit *unit);
+    void defenceFrom(IUnit *unit) override;
 
-    int getAttack();
+    int getAttack() override;
 
-    int getDefence();
+    int getDefence() override;
 
-    int getMoveDistance();
+    int getMoveDistance() override;
 
-    int getAttackDistance();
+    int getAttackDistance() override;
 
-    int getCounterattackDamage();
+    int getCounterattackDamage() override;
 
     Player *getPlayer() override;
 
-    Life& getLife();
+    Life &getLife() override;
 
-    CPosition *getPosition();
+    CPosition *getPosition() override;
 
-    void step();
+    void step() override;
 
-    bool dead();
+    bool dead() override;
 
     bool isMoved() override;
 
@@ -67,11 +67,10 @@ public:
 
     ~GenericUnit() override;
 
-    Avatar *getAvatar();
+    Avatar *getAvatar() override;
 
-    void setAvatar(Avatar *avatar);
+    void setAvatar(Avatar *avatar) override;
 
-    friend std::ostream &operator<<(std::ostream &out, IUnit *unit);
 
 };
 

@@ -28,4 +28,6 @@ public:
     const std::vector<IUnit *> &getUnits() const;
 
     bool dead();
+
+    virtual ~Player();
 };

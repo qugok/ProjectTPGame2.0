@@ -3,10 +3,15 @@ project(ProjectTPGame)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(./include)
+#include_directories(PUBLIC ./include)
 
 aux_source_directory(${PROJECT_SOURCE_DIR}/scr SOURSES)
 
+#if(WITH_TESTS)
 add_subdirectory(tests)
+#endif()
 
-add_executable(ProjectTPGame ${SOURSES})
+
+add_executable(ProjectTPGame ${SOURSES} main.cpp)
+
+target_include_directories(ProjectTPGame PUBLIC ./include)

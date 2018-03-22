@@ -10,13 +10,13 @@ using std::vector;
 Field::Field(int height, int width) {
     for (int i = 1; i <= height; ++i) {
         for (int j = 1; j <= width; ++j) {
-            list.push_back(new CPosition(i,j));
+            this->list.push_back(new CPosition(i, j));
         }
     }
-    defaultAmerican = new CPosition(0, 0);
-    defaultRussian = new CPosition(height + 1, width + 1);
-    list.push_back(defaultAmerican);
-    list.push_back(defaultRussian);
+    this->defaultAmerican = new CPosition(0, 0);
+    this->defaultRussian = new CPosition(height + 1, width + 1);
+    this->list.push_back(this->defaultAmerican);
+    this->list.push_back(this->defaultRussian);
 }
 
 CPosition *Field::getDefaultRussian() {
@@ -28,7 +28,7 @@ CPosition *Field::getDefaultAmerican() {
 }
 
 vector<CPosition*> &Field::getList() {
-    return list;
+    return this->list;
 }
 
 Field::Field(const std::vector<CPosition *> &positions) {

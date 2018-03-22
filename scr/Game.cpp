@@ -30,7 +30,7 @@ bool Game::finished() {
 }
 
 Field *Game::getField() const {
-    return field;
+    return this->field;
 }
 
 

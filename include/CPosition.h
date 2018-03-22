@@ -18,7 +18,9 @@ public:
 
     void clear();
 
-    bool empty();
+    bool operator==(const CPosition &position) const;
+
+    bool empty() const;
 
     int distanceTo(CPosition *position);
 

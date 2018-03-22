@@ -47,3 +47,10 @@ Fraction *Player::getFraction() {
     return fraction;
 }
 
+Player::~Player() {
+    for (IUnit *i : _units) {
+        delete i;
+    }
+    delete fraction;
+}
+

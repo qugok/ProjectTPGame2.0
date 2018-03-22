@@ -8,11 +8,11 @@
 CPosition::CPosition(int x, int y) : x(x), y(y) , unit(nullptr) {}
 
 void CPosition::setUnit(IUnit *unit) {
-    CPosition::unit = unit;
+    this->unit = unit;
 }
 
 void CPosition::clear() {
-    unit = nullptr;
+    this->unit = nullptr;
 }
 
 int CPosition::distanceTo(CPosition *position) {
@@ -28,11 +28,15 @@ std::ostream &operator<<(std::ostream &out, CPosition &position) {
     return out;
 }
 
-bool CPosition::empty() {
-    return unit == nullptr;
+bool CPosition::empty() const {
+    return this->unit == nullptr;
 }
 
 IUnit *CPosition::getUnit() const {
-    return unit;
+    return this->unit;
+}
+
+bool CPosition::operator==(const CPosition &position) const {
+    return position.unit == unit && position.y == y && position.x == x;
 }
 //#endif //PROJECTTPGAME_POSITION_H

@@ -31,9 +31,7 @@ CPosition *Russian::getDefaultPosition() {
     return defaultPosition;
 }
 
-Russian::~Russian() {
-
-}
+Russian::~Russian() = default;
 
 
 American::American(CPosition *position, Player *player) : _player(player)
@@ -62,8 +60,6 @@ CPosition *American::getDefaultPosition() {
     return defaultPosition;
 }
 
-American::~American() {
-
-}
+American::~American() = default;
 
 
