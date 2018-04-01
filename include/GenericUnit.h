@@ -27,27 +27,27 @@ public:
                 int _attackPoints,
                 int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
 
-    bool canAttack(IUnit *unit) override;
+    bool canAttack(IUnit *unit) const override;
 
-    bool isFlying() override;
+    bool isFlying() const override;
 
     void moveTo(CPosition *position) override;
 
-    std::vector<CPosition *> canMoveTo(Field *field) override;
+    std::vector<CPosition *> canMoveTo(Field *field) const override;
 
     void attack(IUnit *unit) override;
 
     void defenceFrom(IUnit *unit) override;
 
-    int getAttack() override;
+    int getAttack() const override;
 
-    int getDefence() override;
+    int getDefence() const override;
 
-    int getMoveDistance() override;
+    int getMoveDistance() const override;
 
-    int getAttackDistance() override;
+    int getAttackDistance() const override;
 
-    int getCounterattackDamage() override;
+    int getCounterattackDamage() const override;
 
     Player *getPlayer() override;
 
@@ -57,13 +57,13 @@ public:
 
     void step() override;
 
-    bool dead() override;
+    bool dead() const override;
 
-    bool isMoved() override;
+    bool isMoved() const override;
 
-    bool isHited() override;
+    bool isHited() const override;
 
-    std::vector<IUnit *> canAttack(Field *field) override;
+    std::vector<IUnit *> canAttack(Field *field) const override;
 
     ~GenericUnit() override;
 

@@ -2,15 +2,11 @@
 // Created by iesek on 19.03.2018.
 //
 
-
 #pragma once
-
 
 #include "IUnit.h"
 #include "Fraction.h"
 #include <vector>
-
-
 
 class Player {
 private:
@@ -27,7 +23,7 @@ public:
 
     const std::vector<IUnit *> &getUnits() const;
 
-    bool dead();
+    bool dead() const;
 
     virtual ~Player();
 };

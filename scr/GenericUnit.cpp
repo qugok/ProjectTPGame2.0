@@ -15,13 +15,13 @@ GenericUnit::GenericUnit(CPosition *_position, Player *player, const Life &_life
           _attackPoints(_attackPoints), _defencePoints(_defencePoints), _moveDistance(_moveDistance),
           _attackDiatance(_attackDiatance), _counterattackDamage(_counterattackDamage) { _position->setUnit(this); }
 
-bool GenericUnit::canAttack(IUnit *unit)  {
+bool GenericUnit::canAttack(IUnit *unit) const {
     return unit == nullptr ||
-           unit->getPosition()->distanceTo(this->getPosition()) && !_isHited && unit->getPlayer() != _player;
+           unit->getPosition()->distanceTo(_position) && !_isHited && unit->getPlayer() != _player;
 
 }
 
-bool GenericUnit::isFlying() {
+bool GenericUnit::isFlying() const {
     return _isFlying;
 }
 
@@ -32,13 +32,13 @@ void GenericUnit::moveTo(CPosition *position) {
     _isMoved = true;
 }
 
-vector<CPosition *> GenericUnit::canMoveTo(Field *field) {
+vector<CPosition *> GenericUnit::canMoveTo(Field *field) const {
     vector<CPosition* > answer;
     if (_isMoved)
         return answer;
     for (CPosition* position : field->getList())
     {
-        if (position->distanceTo(this->getPosition()) <= this->getMoveDistance() && position->empty() &&
+        if (position->distanceTo(_position) <= this->getMoveDistance() && position->empty() &&
             position != field->getDefaultRussian() && position != field->getDefaultAmerican())
             answer.push_back(position);
     }
@@ -54,23 +54,23 @@ void GenericUnit::defenceFrom(IUnit *unit) {
     unit->getLife().getDamage(this->getCounterattackDamage());
 }
 
-int GenericUnit::getAttack() {
+int GenericUnit::getAttack() const {
     return _attackPoints;
 }
 
-int GenericUnit::getDefence() {
+int GenericUnit::getDefence() const {
     return _defencePoints;
 }
 
-int GenericUnit::getMoveDistance() {
+int GenericUnit::getMoveDistance() const {
     return _moveDistance;
 }
 
-int GenericUnit::getAttackDistance() {
+int GenericUnit::getAttackDistance() const {
     return _attackDiatance;
 }
 
-int GenericUnit::getCounterattackDamage() {
+int GenericUnit::getCounterattackDamage() const {
     return _counterattackDamage;
 }
 
@@ -87,8 +87,8 @@ void GenericUnit::step() {
     _isMoved = false;
 }
 
-bool GenericUnit::dead() {
-    return !this->getLife().isAlife();
+bool GenericUnit::dead() const {
+    return !_life.isAlife();
 }
 
 Avatar *GenericUnit::getAvatar() {
@@ -104,7 +104,7 @@ std::ostream &operator<<(std::ostream &out, IUnit *unit) {
     return out;
 }
 
-vector<IUnit *> GenericUnit::canAttack(Field *field) {
+vector<IUnit *> GenericUnit::canAttack(Field *field) const {
     vector<IUnit *> answer;
     for (CPosition *position : field->getList()) {
         if (!position->empty() && canAttack(position->getUnit()) && position != field->getDefaultRussian() &&
@@ -119,11 +119,11 @@ Player *GenericUnit::getPlayer() {
     return _player;
 }
 
-bool GenericUnit::isMoved() {
+bool GenericUnit::isMoved() const {
     return _isMoved;
 }
 
-bool GenericUnit::isHited() {
+bool GenericUnit::isHited() const {
     return _isHited;
 }
 

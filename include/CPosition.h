@@ -22,7 +22,7 @@ public:
 
     bool empty() const;
 
-    int distanceTo(CPosition *position);
+    int distanceTo(CPosition *position) const;
 
     friend std::ostream &operator<<(std::ostream &out, CPosition &position);
 

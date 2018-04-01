@@ -22,7 +22,7 @@ public:
     /*
      * находим множество позиций, куда мы можем пойти
      */
-    virtual std::vector<CPosition*>  canMoveTo(Field* field) = 0;
+    virtual std::vector<CPosition *> canMoveTo(Field *field) const = 0;
     /*
      * атакуем unit
      * он получает соответствующий урон
@@ -32,12 +32,12 @@ public:
     /*
      * ищем юнитов, которых можем атаковать
      */
-    virtual std::vector<IUnit *> canAttack(Field *field) = 0;
+    virtual std::vector<IUnit *> canAttack(Field *field) const = 0;
 
     /*
      * проверяем, можем ли мы атаковать unit
      */
-    virtual bool canAttack(IUnit* unit) = 0;
+    virtual bool canAttack(IUnit *unit) const = 0;
     /*
      * защищаемся от unit
      * опционально:
@@ -56,7 +56,7 @@ public:
     /*
      * получаем значение атаки
      */
-    virtual int getAttack() = 0;
+    virtual int getAttack() const = 0;
 
     /*
      * узнаем чей это юнит
@@ -66,19 +66,19 @@ public:
     /*
      * получаем значение защиты
      */
-    virtual int getDefence() = 0;
+    virtual int getDefence() const = 0;
     /*
      * получаем значение дистанции движения
      */
-    virtual int getMoveDistance() = 0;
+    virtual int getMoveDistance() const = 0;
     /*
      * получаем значение дистанции атаки
      */
-    virtual int getAttackDistance() = 0;
+    virtual int getAttackDistance() const = 0;
     /*
      * получаем значение контратаки
      */
-    virtual int getCounterattackDamage() = 0;
+    virtual int getCounterattackDamage() const = 0;
     /*
      * получаем текущие жизни
      */
@@ -90,15 +90,15 @@ public:
     /*
      * проверяем, умер ли юнит
      */
-    virtual bool dead()= 0;
+    virtual bool dead() const = 0;
     /*
      * является ли юнит летающим
      */
-    virtual bool isFlying() = 0;
+    virtual bool isFlying() const = 0;
 
-    virtual bool isMoved() = 0;
+    virtual bool isMoved() const = 0;
 
-    virtual bool isHited() = 0;
+    virtual bool isHited() const = 0;
     /*
      * следующий ход
      */

@@ -6,7 +6,7 @@
 
 Life::Life (int maxLife) : maxLife(maxLife), currentLife(maxLife){}
 
-bool Life::isAlife() {
+bool Life::isAlife() const {
     return currentLife > 0;
 }
 

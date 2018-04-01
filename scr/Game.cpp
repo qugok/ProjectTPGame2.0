@@ -33,6 +33,12 @@ Field *Game::getField() const {
     return this->field;
 }
 
+Game::~Game() {
+    delete field;
+    delete _American;
+    delete _Russian;
+}
+
 
 
 

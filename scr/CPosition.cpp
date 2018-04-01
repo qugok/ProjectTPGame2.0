@@ -15,7 +15,7 @@ void CPosition::clear() {
     this->unit = nullptr;
 }
 
-int CPosition::distanceTo(CPosition *position) {
+int CPosition::distanceTo(CPosition *position) const {
     return abs(position->x - this->x) + abs(position->y - this->y);
 }
 

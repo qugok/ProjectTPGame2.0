@@ -35,7 +35,7 @@ void Player::step() {
     }
 }
 
-bool Player::dead() {
+bool Player::dead() const {
     return _units.empty();
 }
 

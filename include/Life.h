@@ -12,7 +12,8 @@ private:
     int maxLife;
 public:
     Life (int maxLife);
-    bool isAlife();
+
+    bool isAlife() const;
     void getDamage (int damage);
 
     friend std::ostream &operator<<(std::ostream &out, const Life &life);

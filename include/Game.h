@@ -24,6 +24,8 @@ public:
     Player *getOtherPlayer();
 
     bool finished();
+
+    ~Game();
 };
 
 
