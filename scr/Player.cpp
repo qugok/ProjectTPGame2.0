@@ -50,6 +50,7 @@ Fraction *Player::getFraction() {
 Player::~Player() {
     for (IUnit *i : _units) {
         delete i;
+        i = nullptr;
     }
     delete fraction;
 }
