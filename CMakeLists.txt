@@ -7,13 +7,10 @@ set(CMAKE_CXX_STANDARD 11)
 
 aux_source_directory(${PROJECT_SOURCE_DIR}/scr SOURSES)
 
-message("dfgbd")
 if (WITH_TESTS STREQUAL "1")
-    message("mgvgvjvv")
+    message("generating tests")
     add_subdirectory(tests)
 endif ()
-message(";lkjhg")
-
 
 add_executable(ProjectTPGame ${SOURSES} main.cpp)
 
