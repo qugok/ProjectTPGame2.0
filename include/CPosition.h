@@ -6,7 +6,10 @@
 
 #include "IUnit.h"
 
-class CPosition { // позиция на поле
+/**
+ * @brief позиция юнита на поле
+ */
+class CPosition {
     int x, y;
     IUnit* unit;
 public:

@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 #include_directories(PUBLIC ./include)
 
-aux_source_directory(${PROJECT_SOURCE_DIR}/scr SOURSES)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SOURSES)
 
 if (WITH_TESTS STREQUAL "1")
     message("generating tests")

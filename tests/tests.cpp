@@ -9,7 +9,6 @@
 #include <Fractions.h>
 #include <Game.h>
 
-
 TEST(Position, testingDistanse) {
     CPosition position1(0, 0), position2(3, 3);
     EXPECT_EQ(position1.distanceTo(&position2), 6);
@@ -118,3 +117,4 @@ TEST(Game, test) {
     second->addWarior();
     EXPECT_FALSE(game.finished());
 }
+

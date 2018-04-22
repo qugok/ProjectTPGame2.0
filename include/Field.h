@@ -8,6 +8,9 @@
 #include <iostream>
 class CPosition;
 
+/**
+ * @brief поле на котором амии дерутся
+ */
 class Field {
 private:
     std::vector<CPosition*> list;

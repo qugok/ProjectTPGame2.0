@@ -15,7 +15,7 @@ add_subdirectory(
 
 include_directories(./../include)
 #
-aux_source_directory(./../scr SOURSES)
+aux_source_directory(../src SOURSES)
 
 #add_executable(runBasicTests tests.cpp main.cpp)
 
