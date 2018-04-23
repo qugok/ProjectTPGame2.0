@@ -8,9 +8,42 @@ void Army::attack(CArmy *army) {
     // TODO запуск боя с двумя армиями
 }
 
-Army::~Army() {
-    CArmyUnion::~CArmyUnion();
+void Army::move(const std::shared_ptr<Cell> &cell) {
+    this->currentCell = cell;
+    for (const auto &squad : this->children) {
+        squad.get()->move(cell);
+    }
 }
+
+void Army::unionWith(CArmy *army) {
+    for (const auto &child : army->getChildren())
+        this->children.insert(child);
+}
+
+void Army::add(std::shared_ptr<CArmy> army) {
+    if (!this->currentCell)
+        this->currentCell = army.get()->getCurrentCell();
+    this->children.insert(army);
+}
+
+std::set<std::shared_ptr<CArmy>> Army::getChildren() const {
+    return this->children;
+}
+
+int Army::getStepDistance() const {
+    if (this->children.empty())
+        return 0;
+    int stepDistance = this->children.begin()->get()->getStepDistance();
+    for (const auto &child : children) {
+        stepDistance = std::min(stepDistance, child.get()->getStepDistance());
+    }
+    return stepDistance;
+}
+
+std::shared_ptr<Cell> Army::getCurrentCell() {
+    return this->currentCell;
+}
+
 
 bool Squad::canMove(Cell cell) const {
     return false;
@@ -18,10 +51,42 @@ bool Squad::canMove(Cell cell) const {
 
 void Squad::attack(CArmy *army) {}
 
-Squad::~Squad() {
+void Squad::move(const std::shared_ptr<Cell> &cell) {
+    this->currentCell = cell;
+    for (const auto &squad : this->children) {
+        squad.get()->move(cell);
+    }
+}
+
+void Squad::unionWith(CArmy *army) {
+    for (const auto &child : army->getChildren())
+        this->children.insert(child);
 
 }
 
+void Squad::add(std::shared_ptr<CArmy> army) {
+    if (!this->currentCell)
+        this->currentCell = army.get()->getCurrentCell();
+    this->children.insert(army);
+}
+
+std::set<std::shared_ptr<CArmy>> Squad::getChildren() const {
+    return this->children;
+}
+
+int Squad::getStepDistance() const {
+    if (this->children.empty())
+        return 0;
+    int stepDistance = (*(this->children.begin())).get()->getStepDistance();
+    for (const auto &child : children) {
+        stepDistance = std::min(stepDistance, child.get()->getStepDistance());
+    }
+    return stepDistance;
+}
+
+std::shared_ptr<Cell> Squad::getCurrentCell() {
+    return this->currentCell;
+}
 
 bool Soldier::canMove(Cell cell) const {
     return false;
@@ -47,8 +112,9 @@ std::set<std::shared_ptr<CArmy>> Soldier::getChildren() const {
 
 Soldier::Soldier(IUnit *unit, const std::shared_ptr<Cell> &currentCell) : unit(unit), currentCell(currentCell) {}
 
-Soldier::~Soldier() {
-
+std::shared_ptr<Cell> Soldier::getCurrentCell() {
+    return this->currentCell;
 }
+
 
 

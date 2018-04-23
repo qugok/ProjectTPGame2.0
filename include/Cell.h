@@ -9,6 +9,8 @@
  */
 class Cell {
 public:
+    Cell(int x, int y);
+
     int getDistanceTo(Cell cell);
 
 private:

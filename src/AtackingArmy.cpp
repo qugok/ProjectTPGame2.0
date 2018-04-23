@@ -25,3 +25,15 @@ void AtackingArmy::add(std::shared_ptr<CArmy> army) {
 void AtackingArmy::unionWith(CArmy *army) {
     // locked
 }
+
+std::shared_ptr<Cell> AtackingArmy::getCurrentCell() {
+    return this->m_army.get()->getCurrentCell();
+}
+
+int AtackingArmy::getStepDistance() const {
+    return this->m_army.get()->getStepDistance();
+}
+
+std::set<std::shared_ptr<CArmy>> AtackingArmy::getChildren() const {
+    return this->m_army.get()->getChildren();
+}

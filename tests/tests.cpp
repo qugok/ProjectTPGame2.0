@@ -8,6 +8,8 @@
 #include <Player.h>
 #include <Fractions.h>
 #include <Game.h>
+#include <Armies.h>
+#include <StayingArmy.h>
 
 TEST(Position, testingDistanse) {
     CPosition position1(0, 0), position2(3, 3);
@@ -118,3 +120,23 @@ TEST(Game, test) {
     EXPECT_FALSE(game.finished());
 }
 
+TEST (Army, test) {
+    std::shared_ptr<Cell> cell = std::make_shared<Cell>(1, 2);
+    std::shared_ptr<Cell> cell2 = std::make_shared<Cell>(2, 1);
+    std::shared_ptr<CArmy> army = std::make_shared<Army>();
+    std::shared_ptr<CArmy> squad = std::make_shared<Squad>();
+    std::shared_ptr<CArmy> current(new StayingArmy(army));
+    Fraction *fraction = new American(new CPosition(1, 2), nullptr);
+    IUnit *first = fraction->create_warrior();
+    std::shared_ptr<CArmy> soldier1 = std::make_shared<Soldier>(first, cell);
+    squad->add(soldier1);
+    current->add(squad);
+    EXPECT_EQ(current->getCurrentCell(), cell);
+    EXPECT_EQ(current->getStepDistance(), first->getMoveDistance());
+    current->move(cell2);
+    EXPECT_EQ(current->getCurrentCell(), cell2);
+    delete fraction;
+    delete first;
+
+
+}

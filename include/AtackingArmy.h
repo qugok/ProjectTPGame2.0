@@ -15,6 +15,12 @@ public:
 
     void add(std::shared_ptr<CArmy> army) override;
 
+    std::shared_ptr<Cell> getCurrentCell() override;
+
+    int getStepDistance() const override;
+
+    std::set<std::shared_ptr<CArmy>> getChildren() const override;
+
     void unionWith(CArmy *army) override;
 
 private:

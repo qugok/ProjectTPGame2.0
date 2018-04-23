@@ -4,26 +4,56 @@
 #include <memory>
 #include "CArmy.h"
 #include "IUnit.h"
-#include <CArmyUnion.h>
 
-class Army : public CArmyUnion {
+class Army : public CArmy {
 public:
 
     bool canMove(Cell cell) const override;
 
+    void move(const std::shared_ptr<Cell> &cell) override;
+
+    std::shared_ptr<Cell> getCurrentCell() override;
+
+    void add(std::shared_ptr<CArmy> army) override;
+
+    void unionWith(CArmy *army) override;
+
+    int getStepDistance() const override;
+
+    std::set<std::shared_ptr<CArmy>> getChildren() const override;
+
     void attack(CArmy *army) override;
 
-    ~Army() override;
+private:
+    std::set<std::shared_ptr<CArmy>> children;
+    std::shared_ptr<Cell> currentCell;
+
 };
 
 
-class Squad : public CArmyUnion {
+class Squad : public CArmy {
 public:
+
     bool canMove(Cell cell) const override;
+
+    void move(const std::shared_ptr<Cell> &cell) override;
+
+    void add(std::shared_ptr<CArmy> army) override;
+
+    std::shared_ptr<Cell> getCurrentCell() override;
+
+    void unionWith(CArmy *army) override;
+
+    int getStepDistance() const override;
+
+    std::set<std::shared_ptr<CArmy>> getChildren() const override;
 
     void attack(CArmy *army) override;
 
-    ~Squad() override;
+
+private:
+    std::set<std::shared_ptr<CArmy>> children;
+    std::shared_ptr<Cell> currentCell;
 };
 
 class Soldier : public CArmy {
@@ -36,6 +66,8 @@ public:
 
     void add(std::shared_ptr<CArmy> army) override;
 
+    std::shared_ptr<Cell> getCurrentCell() override;
+
     void attack(CArmy *army) override;
 
     void unionWith(CArmy *army) override;
@@ -44,7 +76,6 @@ public:
 
     std::set<std::shared_ptr<CArmy>> getChildren() const override;
 
-    ~Soldier() override;
 
 private:
     IUnit *unit;

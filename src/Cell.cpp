@@ -8,3 +8,5 @@
 int Cell::getDistanceTo(Cell cell) {
     return abs(this->x - cell.x) + abs(this->y - cell.y);
 }
+
+Cell::Cell(int x, int y) : x(x), y(y) {}

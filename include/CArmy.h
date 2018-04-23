@@ -19,7 +19,8 @@ public:
 
     virtual int getStepDistance() const = 0;
 
+    virtual std::shared_ptr<Cell> getCurrentCell() = 0;
+
     virtual std::set<std::shared_ptr<CArmy>> getChildren() const = 0;
 
-    virtual ~CArmy() = 0;
 };
