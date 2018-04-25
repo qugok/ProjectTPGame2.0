@@ -10,6 +10,7 @@
 #include <Game.h>
 #include <Armies.h>
 #include <StayingArmy.h>
+#include <Reader/FileReader.h>
 
 TEST(Position, testingDistanse) {
     CPosition position1(0, 0), position2(3, 3);
@@ -137,4 +138,49 @@ TEST (Army, test) {
     EXPECT_EQ(current->getCurrentCell(), cell2);
     delete fraction;
     delete first;
+}
+
+TEST (Reader, Reader) {
+    Reader *reader1 = new ConstantsReader();
+    Reader *reader2 = new FileReader();
+    reader1->readRussianArcher();
+    reader2->readRussianArcher();
+    EXPECT_EQ(reader1->getMoveDistance(), reader2->getMoveDistance());
+    EXPECT_EQ(reader1->getAttackDistance(), reader2->getAttackDistance());
+    EXPECT_EQ(reader1->getAttack(), reader2->getAttack());
+    EXPECT_EQ(reader1->getCounterattackDamage(), reader2->getCounterattackDamage());
+    EXPECT_EQ(reader1->getDefence(), reader2->getDefence());
+    EXPECT_EQ(reader1->getMaxLives(), reader2->getMaxLives());
+    reader1->readAmericanWarrior();
+    reader2->readAmericanWarrior();
+    EXPECT_EQ(reader1->getMoveDistance(), reader2->getMoveDistance());
+    EXPECT_EQ(reader1->getAttackDistance(), reader2->getAttackDistance());
+    EXPECT_EQ(reader1->getAttack(), reader2->getAttack());
+    EXPECT_EQ(reader1->getCounterattackDamage(), reader2->getCounterattackDamage());
+    EXPECT_EQ(reader1->getDefence(), reader2->getDefence());
+    EXPECT_EQ(reader1->getMaxLives(), reader2->getMaxLives());
+    reader1->readDefaultFlyer();
+    reader2->readDefaultFlyer();
+    EXPECT_EQ(reader1->getMoveDistance(), reader2->getMoveDistance());
+    EXPECT_EQ(reader1->getAttackDistance(), reader2->getAttackDistance());
+    EXPECT_EQ(reader1->getAttack(), reader2->getAttack());
+    EXPECT_EQ(reader1->getCounterattackDamage(), reader2->getCounterattackDamage());
+    EXPECT_EQ(reader1->getDefence(), reader2->getDefence());
+    EXPECT_EQ(reader1->getMaxLives(), reader2->getMaxLives());
+    reader1->readAmericanArcher();
+    reader2->readAmericanArcher();
+    EXPECT_EQ(reader1->getMoveDistance(), reader2->getMoveDistance());
+    EXPECT_EQ(reader1->getAttackDistance(), reader2->getAttackDistance());
+    EXPECT_EQ(reader1->getAttack(), reader2->getAttack());
+    EXPECT_EQ(reader1->getCounterattackDamage(), reader2->getCounterattackDamage());
+    EXPECT_EQ(reader1->getDefence(), reader2->getDefence());
+    EXPECT_EQ(reader1->getMaxLives(), reader2->getMaxLives());
+    reader1->readRussianWarrior();
+    reader2->readRussianWarrior();
+    EXPECT_EQ(reader1->getMoveDistance(), reader2->getMoveDistance());
+    EXPECT_EQ(reader1->getAttackDistance(), reader2->getAttackDistance());
+    EXPECT_EQ(reader1->getAttack(), reader2->getAttack());
+    EXPECT_EQ(reader1->getCounterattackDamage(), reader2->getCounterattackDamage());
+    EXPECT_EQ(reader1->getDefence(), reader2->getDefence());
+    EXPECT_EQ(reader1->getMaxLives(), reader2->getMaxLives());
 }

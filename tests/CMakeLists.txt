@@ -18,15 +18,18 @@ add_subdirectory(
 include_directories(./../include)
 #
 
-
 file(GLOB_RECURSE SOURSES . ../src/*.cpp)
 
 
 #aux_source_directory(../src SOURSES)
 
 #add_executable(runBasicTests tests.cpp main.cpp)
+#message(${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
+#message(${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 add_executable(runBasicTests tests.cpp main.cpp ${SOURSES})
+
 
 #target_link_libraries(runBasicTests gtest ${SOURSES})
 
