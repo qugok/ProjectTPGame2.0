@@ -1,4 +1,4 @@
-#include <Reader/ConstantsReader.h>
+#include "Reader/ConstantsReader.h"
 #include <CConstants.h>
 
 
@@ -62,7 +62,7 @@ void ConstantsReader::readAmericanArcher() {
     Reader::MaxLives = cMaxLives;
 }
 
-void ConstantsReader::readDefauiltWarrior() {
+void ConstantsReader::readDefaultWarrior() {
     using namespace Constants::Default::Warrior;
     Reader::Attack = cAttack;
     Reader::AttackDistance = cAttackDistance;
@@ -72,7 +72,7 @@ void ConstantsReader::readDefauiltWarrior() {
     Reader::MaxLives = cMaxLives;
 }
 
-void ConstantsReader::readDefauiltFlyer() {
+void ConstantsReader::readDefaultFlyer() {
     using namespace Constants::Default::Flyer;
     Reader::Attack = cAttack;
     Reader::AttackDistance = cAttackDistance;
@@ -82,7 +82,7 @@ void ConstantsReader::readDefauiltFlyer() {
     Reader::MaxLives = cMaxLives;
 }
 
-void ConstantsReader::readDefauiltArcher() {
+void ConstantsReader::readDefaultArcher() {
     using namespace Constants::Default::Archer;
     Reader::Attack = cAttack;
     Reader::AttackDistance = cAttackDistance;
@@ -91,3 +91,6 @@ void ConstantsReader::readDefauiltArcher() {
     Reader::Defence = cDefence;
     Reader::MaxLives = cMaxLives;
 }
+
+ConstantsReader::ConstantsReader() : Reader() {}
+

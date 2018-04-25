@@ -1,13 +1,15 @@
 #pragma once
 
 #include <fstream>
-#include "Reader.h"
+#include <Reader/Reader.h>
 
 class FileReader : public Reader {
 private:
     void readFile(std::string fileName);
 
 public:
+    FileReader();
+
     void readRussianWarrior() override;
 
     void readRussianFlyer() override;
@@ -20,9 +22,9 @@ public:
 
     void readAmericanArcher() override;
 
-    void readDefauiltWarrior() override;
+    void readDefaultWarrior() override;
 
-    void readDefauiltFlyer() override;
+    void readDefaultFlyer() override;
 
-    void readDefauiltArcher() override;
+    void readDefaultArcher() override;
 };

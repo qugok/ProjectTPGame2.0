@@ -1,8 +1,9 @@
-
 #pragma once
 
 class Reader {
 public:
+    Reader();
+
     virtual void readRussianWarrior() = 0;
 
     virtual void readRussianFlyer() = 0;
@@ -15,29 +16,29 @@ public:
 
     virtual void readAmericanArcher() = 0;
 
-    virtual void readDefauiltWarrior() = 0;
+    virtual void readDefaultWarrior() = 0;
 
-    virtual void readDefauiltFlyer() = 0;
+    virtual void readDefaultFlyer() = 0;
 
-    virtual void readDefauiltArcher() = 0;
+    virtual void readDefaultArcher() = 0;
 
-    int getAttack() const;
+    virtual int getAttack() const;
 
-    int getMoveDistance() const;
+    virtual int getMoveDistance() const;
 
-    int getAttackDistance() const;
+    virtual int getAttackDistance() const;
 
-    int getCounterattackDamage() const;
+    virtual int getCounterattackDamage() const;
 
-    int getDefence() const;
+    virtual int getDefence() const;
 
-    int getMaxLives() const;
+    virtual int getMaxLives() const;
 
 protected:
-    int Attack = 0;
-    int MoveDistance = 0;
-    int AttackDistance = 0;
-    int CounterattackDamage = 0;
-    int Defence = 0;
-    int MaxLives = 0;
+    int Attack;
+    int MoveDistance;
+    int AttackDistance;
+    int CounterattackDamage;
+    int Defence;
+    int MaxLives;
 };

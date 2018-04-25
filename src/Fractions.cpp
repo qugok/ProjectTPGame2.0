@@ -5,11 +5,11 @@
 #include "Fractions.h"
 
 Russian::Russian(CPosition *position, Player *player,
-                 std::shared_ptr<Reader> reader = std::make_shared<ConstantsReader>()) : _player(player), reader(
-        std::move(reader))
-{
+                 std::shared_ptr<Reader> reader) : _player(player), reader(
+        std::move(reader)) {
     Russian::defaultPosition = position;
 }
+
 Warrior *Russian::create_warrior() {
     reader->readRussianWarrior();
     return new Warrior(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
@@ -24,7 +24,7 @@ Archer *Russian::create_archer() {
                       reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
-Flyer *Russian::create_flayer()  {
+Flyer *Russian::create_flayer() {
     reader->readRussianFlyer();
     return new Flyer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
                      reader->getDefence(), reader->getMoveDistance(),
@@ -35,30 +35,33 @@ CPosition *Russian::getDefaultPosition() {
     return defaultPosition;
 }
 
+Russian::Russian(CPosition *position, Player *player)
+        : Russian(position, player, std::make_shared<ConstantsReader>()) {}
+
 Russian::~Russian() = default;
 
 
 American::American(CPosition *position, Player *player,
-                   std::shared_ptr<Reader> reader = std::make_shared<ConstantsReader>()) : _player(player), reader(
-        std::move(reader))
-{
+                   std::shared_ptr<Reader> reader) : _player(player), reader(
+        std::move(reader)) {
     defaultPosition = position;
 }
-Warrior* American::create_warrior()  {
+
+Warrior *American::create_warrior() {
     reader->readAmericanWarrior();
     return new Warrior(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
                        reader->getDefence(), reader->getMoveDistance(),
                        reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
-Archer* American::create_archer()  {
+Archer *American::create_archer() {
     reader->readAmericanArcher();
     return new Archer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
                       reader->getDefence(), reader->getMoveDistance(),
                       reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
-Flyer* American::create_flayer()  {
+Flyer *American::create_flayer() {
     reader->readAmericanFlyer();
     return new Flyer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
                      reader->getDefence(), reader->getMoveDistance(),
@@ -68,6 +71,9 @@ Flyer* American::create_flayer()  {
 CPosition *American::getDefaultPosition() {
     return defaultPosition;
 }
+
+American::American(CPosition *position, Player *player)
+        : American(position, player, std::make_shared<ConstantsReader>()) {}
 
 American::~American() = default;
 

@@ -1,4 +1,3 @@
-#include <FileReader.h>
 #include <Reader/FileReader.h>
 
 void FileReader::readRussianWarrior() {
@@ -25,15 +24,15 @@ void FileReader::readAmericanArcher() {
     this->readFile("./../parameters/AmericanArcher");
 }
 
-void FileReader::readDefauiltWarrior() {
+void FileReader::readDefaultWarrior() {
     this->readFile("./../parameters/DefauiltWarrior");
 }
 
-void FileReader::readDefauiltFlyer() {
+void FileReader::readDefaultFlyer() {
     this->readFile("./../parameters/DefauiltFlyer");
 }
 
-void FileReader::readDefauiltArcher() {
+void FileReader::readDefaultArcher() {
     this->readFile("./../parameters/DefauiltArcher");
 }
 
@@ -68,3 +67,5 @@ void FileReader::readFile(std::string fileName) {
     in >> Reader::MaxLives;
 
 }
+
+FileReader::FileReader() : Reader() {}

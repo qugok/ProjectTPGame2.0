@@ -1,4 +1,3 @@
-#include <Reader.h>
 #include <Reader/Reader.h>
 
 int Reader::getAttack() const {
@@ -24,3 +23,5 @@ int Reader::getDefence() const {
 int Reader::getMaxLives() const {
     return MaxLives;
 }
+
+Reader::Reader() : MoveDistance(0), Attack(0), AttackDistance(0), CounterattackDamage(0), Defence(0), MaxLives(0) {}

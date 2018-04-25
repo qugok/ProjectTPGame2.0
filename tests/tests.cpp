@@ -137,6 +137,4 @@ TEST (Army, test) {
     EXPECT_EQ(current->getCurrentCell(), cell2);
     delete fraction;
     delete first;
-
-
 }

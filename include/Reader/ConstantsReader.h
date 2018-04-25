@@ -1,24 +1,27 @@
 #pragma once
 
-#include "Reader.h"
+#include "Reader/Reader.h"
 
 class ConstantsReader : public Reader {
 public:
-    void readRussianWarrior() override;
 
-    void readRussianFlyer() override;
+    ConstantsReader();
 
-    void readRussianArcher() override;
+    virtual void readRussianWarrior() override;
 
-    void readAmericanWarrior() override;
+    virtual void readRussianFlyer() override;
 
-    void readAmericanFlyer() override;
+    virtual void readRussianArcher() override;
 
-    void readAmericanArcher() override;
+    virtual void readAmericanWarrior() override;
 
-    void readDefauiltWarrior() override;
+    virtual void readAmericanFlyer() override;
 
-    void readDefauiltFlyer() override;
+    virtual void readAmericanArcher() override;
 
-    void readDefauiltArcher() override;
+    virtual void readDefaultWarrior() override;
+
+    virtual void readDefaultFlyer() override;
+
+    virtual void readDefaultArcher() override;
 };
