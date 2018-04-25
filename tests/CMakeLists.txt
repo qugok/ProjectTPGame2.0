@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 3.9)
 
 #include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
+#find_package(gtest)
+#
 add_subdirectory(
         C:/Users/iesek/CLionProjects/googletest/googletest
         ${CMAKE_CURRENT_BINARY_DIR}/gtest)

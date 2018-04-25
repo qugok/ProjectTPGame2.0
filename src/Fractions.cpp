@@ -3,28 +3,32 @@
 //
 
 #include "Fractions.h"
-#include "CConstants.h"
 
-Russian::Russian(CPosition *position, Player *player) : _player(player)
+Russian::Russian(CPosition *position, Player *player,
+                 std::shared_ptr<Reader> reader = std::make_shared<ConstantsReader>()) : _player(player), reader(
+        std::move(reader))
 {
     Russian::defaultPosition = position;
 }
 Warrior *Russian::create_warrior() {
-    using namespace Constants::Russian::Warrior;
-    return new Warrior(defaultPosition, _player, Life(cMaxLives), true, true, cAttack, cDefence, cMoveDistance,
-                       cAttackDistance, cCounterattackDamage);
+    reader->readRussianWarrior();
+    return new Warrior(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
+                       reader->getDefence(), reader->getMoveDistance(),
+                       reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
 Archer *Russian::create_archer() {
-    using namespace Constants::Russian::Archer;
-    return new Archer(defaultPosition, _player, Life(cMaxLives), true, true, cAttack, cDefence, cMoveDistance,
-                      cAttackDistance, cCounterattackDamage);
+    reader->readRussianArcher();
+    return new Archer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
+                      reader->getDefence(), reader->getMoveDistance(),
+                      reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
 Flyer *Russian::create_flayer()  {
-    using namespace Constants::Russian::Flyer;
-    return new Flyer(defaultPosition, _player, Life(cMaxLives), true, true, cAttack, cDefence, cMoveDistance,
-                     cAttackDistance, cCounterattackDamage);
+    reader->readRussianFlyer();
+    return new Flyer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
+                     reader->getDefence(), reader->getMoveDistance(),
+                     reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
 CPosition *Russian::getDefaultPosition() {
@@ -34,26 +38,31 @@ CPosition *Russian::getDefaultPosition() {
 Russian::~Russian() = default;
 
 
-American::American(CPosition *position, Player *player) : _player(player)
+American::American(CPosition *position, Player *player,
+                   std::shared_ptr<Reader> reader = std::make_shared<ConstantsReader>()) : _player(player), reader(
+        std::move(reader))
 {
     defaultPosition = position;
 }
 Warrior* American::create_warrior()  {
-    using namespace Constants::American::Warrior;
-    return new Warrior(defaultPosition, _player, Life(cMaxLives), true, true, cAttack, cDefence, cMoveDistance,
-                       cAttackDistance, cCounterattackDamage);
+    reader->readAmericanWarrior();
+    return new Warrior(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
+                       reader->getDefence(), reader->getMoveDistance(),
+                       reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
 Archer* American::create_archer()  {
-    using namespace Constants::American::Archer;
-    return new Archer(defaultPosition, _player, Life(cMaxLives), true, true, cAttack, cDefence, cMoveDistance,
-                      cAttackDistance, cCounterattackDamage);
+    reader->readAmericanArcher();
+    return new Archer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
+                      reader->getDefence(), reader->getMoveDistance(),
+                      reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
 Flyer* American::create_flayer()  {
-    using namespace Constants::American::Flyer;
-    return new Flyer(defaultPosition, _player, Life(cMaxLives), true, true, cAttack, cDefence, cMoveDistance,
-                     cAttackDistance, cCounterattackDamage);
+    reader->readAmericanFlyer();
+    return new Flyer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
+                     reader->getDefence(), reader->getMoveDistance(),
+                     reader->getAttackDistance(), reader->getCounterattackDamage());
 }
 
 CPosition *American::getDefaultPosition() {

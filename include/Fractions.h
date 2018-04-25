@@ -4,6 +4,9 @@
 
 #pragma once
 
+#include <Reader/Reader.h>
+#include <memory>
+#include <Reader/ConstantsReader.h>
 #include "Fraction.h"
 #include "Units.h"
 
@@ -13,8 +16,9 @@ class Russian : public Fraction {
 private:
     CPosition* defaultPosition;
     Player *_player;
+    std::shared_ptr<Reader> reader;
 public:
-    Russian(CPosition *position, Player *player);
+    Russian(CPosition *position, Player *player, std::shared_ptr<Reader> reader = std::make_shared<ConstantsReader>());
 
     Warrior *create_warrior() override;
 
@@ -31,8 +35,9 @@ class American : public Fraction {
 private:
     CPosition* defaultPosition;
     Player *_player;
+    std::shared_ptr<Reader> reader;
 public:
-    American(CPosition *position, Player *player);
+    American(CPosition *position, Player *player, std::shared_ptr<Reader> reader = std::make_shared<ConstantsReader>());
 
     Warrior *create_warrior() override;
 

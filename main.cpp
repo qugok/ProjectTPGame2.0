@@ -1,4 +1,5 @@
 #include <iostream>
+//#include <fstream>
 #include <Game.h>
 
 
@@ -11,8 +12,69 @@ std::ostream &operator<<(std::ostream &out, const std::vector<IUnit *> &list) {
     }
     return out;
 }
+//
+//void makeFiles() {
+//    {
+//        freopen("./../parameters/RussianWarrior", "w", stdout);
+//        using namespace Constants::Russian::Warrior;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/RussianFlyer", "w", stdout);
+//        using namespace Constants::Russian::Flyer;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/RussianArcher", "w", stdout);
+//        using namespace Constants::Russian::Archer;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/AmericanWarrior", "w", stdout);
+//        using namespace Constants::American::Warrior;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/AmericanFlyer", "w", stdout);
+//        using namespace Constants::American::Flyer;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/AmericanArcher", "w", stdout);
+//        using namespace Constants::American::Archer;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/DefaultWarrior", "w", stdout);
+//        using namespace Constants::Default::Warrior;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/DefaultFlyer", "w", stdout);
+//        using namespace Constants::Default::Flyer;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//    {
+//        freopen("./../parameters/DefaultArcher", "w", stdout);
+//        using namespace Constants::Default::Archer;
+//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
+//             << "\n- " << cDefence << "\n- " << cMaxLives;
+//    }
+//}
 
 int main() {
+
+//    makeFiles();
+//    return 0;
+
     Game game(10, 10);
 
     for (int i = 0; i < 5; i++) {

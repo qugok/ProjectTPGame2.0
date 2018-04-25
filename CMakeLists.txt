@@ -12,6 +12,11 @@ if (WITH_TESTS STREQUAL "1")
     add_subdirectory(tests)
 endif ()
 
+#find_package(json1)
+
+
+#message(${json})
+
 add_executable(ProjectTPGame ${SOURSES} main.cpp)
 
 target_include_directories(ProjectTPGame PUBLIC ./include)
