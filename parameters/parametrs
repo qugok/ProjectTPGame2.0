@@ -1,0 +1,16 @@
+#comment
+#first - line CAttack
+- 4
+
+#second cMoveDistance
+
+- 5
+
+# cAttackDistance
+- 1
+# cCounterattackDamage
+- 8
+cDefence
+- 15
+# cMaxLives
+- 200

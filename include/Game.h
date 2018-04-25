@@ -2,6 +2,9 @@
 // Created by iesek on 19.03.2018.
 //
 
+// TODO переписать game с учетом армий (не к 2 дедлайну)
+
+
 #pragma once
 
 #include "Field.h"
