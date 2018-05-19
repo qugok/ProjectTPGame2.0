@@ -9,7 +9,7 @@
 #include "Life.h"
 #include <iostream>
 
-class CPosition;
+//class CPosition;
 
 class Player;
 

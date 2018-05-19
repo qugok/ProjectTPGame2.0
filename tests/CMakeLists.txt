@@ -15,7 +15,7 @@ add_subdirectory(
 
 #file(SOURCES GRUB ./tests/*.cpp)
 
-include_directories(./../include)
+#target_include_directories(runBasicTests ./../include)
 #
 
 file(GLOB_RECURSE SOURSES . ../src/*.cpp)
@@ -31,6 +31,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 add_executable(runBasicTests tests.cpp main.cpp ${SOURSES})
 
 
+target_include_directories(runBasicTests PUBLIC ./../include)
 #target_link_libraries(runBasicTests gtest ${SOURSES})
 
 target_link_libraries(runBasicTests gtest)
