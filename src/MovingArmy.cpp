@@ -1,35 +1,38 @@
 #include <MovingArmy.h>
 
-MovingArmy::MovingArmy(const std::shared_ptr<CArmy> &m_army) : m_army(m_army) {}
-
-void MovingArmy::add(std::shared_ptr<CArmy> army) {
-    // locked, because we are moving
+void MovingArmy::move(const Cell &cell) {
+    m_army->move(cell);
 }
 
-void MovingArmy::unionWith(CArmy *army) {
-    // locked, because we are moving
+void MovingArmy::add(IUnit *unit) {}
+
+MovingArmy::MovingArmy(const std::shared_ptr<CArmy> &m_army) {
+    this->m_army = m_army;
+
 }
 
-bool MovingArmy::canMove(Cell cell) const {
-    return this->m_army.get()->canMove(cell);
+const Cell &MovingArmy::getCurrentCell() const {
+    return this->m_army->getCurrentCell();
 }
 
-void MovingArmy::move(const std::shared_ptr<Cell> &cell) {
-    this->m_army.get()->move(cell);
+void MovingArmy::fight(const std::shared_ptr<CArmy> &army) {
+    m_army->fight(army);
 }
 
-std::shared_ptr<Cell> MovingArmy::getCurrentCell() {
-    return this->m_army.get()->getCurrentCell();
+MovingArmy::~MovingArmy() = default;
+
+int MovingArmy::getId() const {
+    return m_army->getId();
 }
 
-int MovingArmy::getStepDistance() const {
-    return this->m_army.get()->getStepDistance();
+std::vector<std::shared_ptr<IUnit>> &MovingArmy::get_unit() {
+    return m_army->get_unit();
 }
 
-std::set<std::shared_ptr<CArmy>> MovingArmy::getChildren() const {
-    return this->m_army.get()->getChildren();
+void MovingArmy::addObserver(IObserver *observer) {
+    m_army->addObserver(observer);
 }
 
-void MovingArmy::attack(CArmy *army) {
-    this->m_army.get()->attack(army);
+void MovingArmy::isEmpty() {
+    m_army->isEmpty();
 }

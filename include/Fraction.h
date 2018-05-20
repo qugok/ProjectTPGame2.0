@@ -8,12 +8,11 @@
 
 class Fraction {
 public:
-    virtual IUnit *create_archer() = 0;
+    virtual IUnit *create_archer() const = 0;
 
-    virtual IUnit *create_flayer() = 0;
+    virtual IUnit *create_flayer() const = 0;
 
-    virtual IUnit *create_warrior() = 0;
+    virtual IUnit *create_warrior() const = 0;
 
-    virtual CPosition *getDefaultPosition() = 0;
     virtual ~Fraction(){}
 };

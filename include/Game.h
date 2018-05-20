@@ -7,28 +7,27 @@
 
 #pragma once
 
-#include "Field.h"
 #include "Player.h"
+#include "Map.h"
 
 class Game {
-private:
-    Field* field;
-    Player* _American;
-    Player* _Russian;
-    bool currentPlayer;
 public:
+
     Game(int height, int width);
 
     void step();
 
-    Field *getField() const;
-    Player* getCurrentPlayer();
+    Player &getCurrentPlayer();
 
-    Player *getOtherPlayer();
+    Player &getOtherPlayer();
 
-    bool finished();
+    bool finished() const;
 
-    ~Game();
+private:
+    Player first;
+    Player second;
+    Map map;
+    bool currentPlayer;
 };
 
 

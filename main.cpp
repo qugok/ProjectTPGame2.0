@@ -1,137 +1,115 @@
 #include <iostream>
-//#include <fstream>
 #include <Game.h>
 
 
 using namespace std;
 
-std::ostream &operator<<(std::ostream &out, const std::vector<IUnit *> &list) {
-    for (IUnit *unit : list) {
-        out << *(unit->getPosition()) << (unit->isMoved() ? " ismoved " : "") << (unit->isHited() ? " isHited " : "")
-            << "\t\t";
-    }
+template<class T>
+std::ostream &operator<<(std::ostream &out, std::vector<T> v) {
+    for (T e:v)
+        out << e << "\t";
     return out;
 }
-//
-//void makeFiles() {
-//    {
-//        freopen("./../parameters/RussianWarrior", "w", stdout);
-//        using namespace Constants::Russian::Warrior;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/RussianFlyer", "w", stdout);
-//        using namespace Constants::Russian::Flyer;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/RussianArcher", "w", stdout);
-//        using namespace Constants::Russian::Archer;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/AmericanWarrior", "w", stdout);
-//        using namespace Constants::American::Warrior;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/AmericanFlyer", "w", stdout);
-//        using namespace Constants::American::Flyer;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/AmericanArcher", "w", stdout);
-//        using namespace Constants::American::Archer;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/DefaultWarrior", "w", stdout);
-//        using namespace Constants::Default::Warrior;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/DefaultFlyer", "w", stdout);
-//        using namespace Constants::Default::Flyer;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//    {
-//        freopen("./../parameters/DefaultArcher", "w", stdout);
-//        using namespace Constants::Default::Archer;
-//        cout << "- " << cAttack << "\n- " << cMoveDistance << "\n- " << cAttackDistance << "\n- " << cCounterattackDamage
-//             << "\n- " << cDefence << "\n- " << cMaxLives;
-//    }
-//}
 
-int main() {
+template<class T>
+std::ostream &operator<<(std::ostream &out, std::set<T> v) {
+    for (T e:v)
+        out << e << "\t";
+    return out;
+}
 
-//    makeFiles();
-//    return 0;
 
-    Game game(10, 10);
+void play() {
+
+    Game game(5, 5);
 
     for (int i = 0; i < 5; i++) {
-        game.getCurrentPlayer()->addWarior();
+        Player &player = game.getCurrentPlayer();
+        IUnit *unit = player.getFraction()->create_warrior();
+        player.addArmy(unit, Cell(1, 2));
+        game.getCurrentPlayer() = player;
+    }
+    for (int i = 0; i < 5; i++) {
+        Player &player = game.getCurrentPlayer();
+        IUnit *unit = player.getFraction()->create_flayer();
+        player.addArmy(unit, Cell(1, 2));
+        game.getCurrentPlayer() = player;
     }
 
     for (int i = 0; i < 5; i++) {
-        game.getOtherPlayer()->addArcher();
+        Player &player = game.getOtherPlayer();
+        IUnit *unit = player.getFraction()->create_warrior();
+        player.addArmy(unit, Cell(1, 2));
+        game.getOtherPlayer() = player;
     }
+
+    for (int i = 0; i < 5; i++) {
+        Player &player = game.getOtherPlayer();
+        IUnit *unit = player.getFraction()->create_archer();
+        player.addArmy(unit, Cell(1, 2));
+        game.getOtherPlayer() = player;
+    }
+
+    cout << game.getCurrentPlayer().getArmyNumbers() << "\n";
+    cout << game.getCurrentPlayer().getArmyNumbers();
+
 //    cout << *game.getField()<<"\n";
-    game.step();
+//    game.step();
     while (!game.finished()) {
-        cout << "start of step\n";
-        vector<IUnit *> units = game.getCurrentPlayer()->getUnits();
+        cout << "\n\nstart of the next player's step\n";
+        vector<int> units = game.getCurrentPlayer().getArmyNumbers();
+        std::set<int> s(units.begin(), units.end());
         int number;
-        while (cout << "Choose one of " << units.size() << " units:\n ", cout << units << "\n\n", cin >> number) {
-            number--;
-            if (number >= units.size() || number < 0) {
-                break;
+//        while
+//        cout << "Choose one of " << units.size() << " armies:\n", cout << units << "\n\n", cin >> number;
+        cout << "Choose one of " << s.size() << " armies:\n", cout << s << "\n\n", cin >> number;
+        {
+            if (s.find(number) == s.end()) {
+                cout << "Wrong Chousen, я не знаю такого номера";
+                continue;
             }
             {
-                Field field = units[number]->canMoveTo(game.getField());
-                if (!field.getList().empty()) {
-                    cout << "you can move to:\n" << field << "\n where do you want to move?\n";
-                    int N;
-                    cin >> N;
-                    N--;
-                    if (N >= field.getList().size() || N < 0) {
-                        break;
-                    }
-                    units[number]->moveTo(field.getList()[N]);
-                    cout << "Unit " << units[number] << " \tmoved to\t" << *units[number]->getPosition() << "\n";
-                } else {
-                    cout << "you can't move\n";
-                }
-            }
-            {
-                vector<IUnit *> possibleTargets = units[number]->canAttack(game.getField());
+                vector<int> possibleTargets = game.getOtherPlayer().getArmyNumbers();
+                std::set<int> s2(possibleTargets.begin(), possibleTargets.end());
                 if (!possibleTargets.empty()) {
-                    cout << "you can attack:\n" << possibleTargets << "\n Who you want to attack?\n";
+                    cout << "you can attack any opponent army:\n" << s2 << "\n Who you want to attack?\n";
                     int N;
                     cin >> N;
-                    N--;
-                    if (N >= possibleTargets.size() || N < 0) {
-                        break;
+                    if (s2.find(N) == s2.end()) {
+                        cout << "Wrong Chousen, я не знаю такого номера";
+                        continue;
                     }
-                    units[number]->attack(possibleTargets[N]);
-                    possibleTargets[N]->defenceFrom(units[number]);
-                    cout << "Unit " << possibleTargets[N] << " attacked\n by Unit " << units[number] << "\n";
-                } else {
-                    cout << "you can't attack anybody\n";
+                    game.getCurrentPlayer().attackArmy(number, game.getOtherPlayer(), N);
+
+                    cout << "You have attacked\nNow you have armies:\n" << game.getCurrentPlayer().getArmyNumbers()
+                         << "\nAnd opponent has\n" << game.getOtherPlayer().getArmyNumbers()
+                         << "\nstarts opponent's step\n";
+//                    units[number]->attack(possibleTargets[N]);
+//                    possibleTargets[N]->defenceFrom(units[number]);
+//                    cout << "Unit " << possibleTargets[N] << " attacked\n by Unit " << units[number] << "\n";
+//                } else {
+//                    cout << "you can't attack anybody\n";
                 }
             }
         }
-        cout << "OK your step is finished\nnext Player\n";
+//        cout << "OK your step is finished\nnext Player\n";
         game.step();
     }
-    cout << "Game over";
+    cout << "you win!\nGame over";
+
+}
+
+int main() {
+    std::vector<int> v = {1, 2, 3, 4, 5};
+    v.erase(v.begin(), v.begin());
+    cout << v << "\n";
+    v.erase(v.begin(), v.begin() + 1);
+    cout << v << "\n";
+    try {
+        play();
+    }
+    catch (...) {
+        cout << "произошла непредвиденная ошибка, обязательно скажите разработчику, как вы этого добились";
+    }
     return 0;
 }

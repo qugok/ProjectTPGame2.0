@@ -8,69 +8,32 @@
 #include "IUnit.h"
 
 class GenericUnit : public IUnit {
-private:
-    CPosition* _position;
-    Player *_player;
-    Life _life;
-    bool _isMoved;
-    bool _isHited;
-    bool _isFlying;
-    int _attackPoints;
-    int _defencePoints;
-    int _moveDistance;
-    int _attackDiatance;
-    int _counterattackDamage;
-    Avatar * _avatar;
 public:
-
-    GenericUnit(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited, bool _isFlying,
-                int _attackPoints,
-                int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
-
-    bool canAttack(IUnit *unit) const override;
+    GenericUnit(const Life &_life, bool _isFlying, int _attackPoints);
 
     bool isFlying() const override;
 
-    void moveTo(CPosition *position) override;
-
-    std::vector<CPosition *> canMoveTo(Field *field) const override;
-
     void attack(IUnit *unit) override;
 
-    void defenceFrom(IUnit *unit) override;
-
-    int getAttack() const override;
-
-    int getDefence() const override;
-
-    int getMoveDistance() const override;
-
-    int getAttackDistance() const override;
-
-    int getCounterattackDamage() const override;
-
-    Player *getPlayer() override;
+//    IUnit *fight(IUnit*& enemy) override;
 
     Life &getLife() override;
 
-    CPosition *getPosition() override;
-
-    void step() override;
+    bool canAttack(IUnit *unit) const override;
 
     bool dead() const override;
 
-    bool isMoved() const override;
+//    IUnit* set_next(IUnit *next) override;
 
-    bool isHited() const override;
-
-    std::vector<IUnit *> canAttack(Field *field) const override;
+//    IUnit *get_next()const  override;
 
     ~GenericUnit() override;
 
-    Avatar *getAvatar() override;
-
-    void setAvatar(Avatar *avatar) override;
-
+private:
+    IUnit *next;
+    Life _life;
+    bool _isFlying;
+    int _attackPoints;
 
 };
 
