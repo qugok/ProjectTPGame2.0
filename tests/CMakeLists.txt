@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.5)
 #set(gtest_SOURCE_DIR C:/Users/iesek/CLionProjects/googletest/googletest)
 
 #include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+#add_subdirectory(
+#        C:/Users/iesek/CLionProjects/googletest/googletest
+#        ${CMAKE_CURRENT_BINARY_DIR}/gtest)
 
 #find_package(gtest)
 find_package(GTest REQUIRED)
@@ -30,9 +33,6 @@ else ()
     message("gtest not found")
 endif ()
 #
-#add_subdirectory(
-#        C:/Users/iesek/CLionProjects/googletest/googletest
-#        ${CMAKE_CURRENT_BINARY_DIR}/gtest)
 
 
 #target_link_libraries(runBasicTests )

@@ -6,7 +6,6 @@
 #include <GenericUnit.h>
 #include <Player.h>
 #include <Fractions.h>
-#include <Game.h>
 #include <Army.h>
 #include <MovingArmy.h>
 #include <Reader/FileReader.h>
@@ -39,16 +38,16 @@ TEST(Life, test) {
 
 
 TEST(GenericUnit, test) {
-GenericUnit unit(Life(2), false, 1);
+    GenericUnit unit(Life(2), false, 1);
     EXPECT_EQ(unit.isFlying(), false);
-GenericUnit unit2(Life(2), false, 1);
+    GenericUnit unit2(Life(2), false, 1);
     unit.attack(&unit2);
     EXPECT_EQ(unit2.getLife().isAlife(), !unit2.dead());
     EXPECT_FALSE(unit2.dead());
     EXPECT_EQ(unit.getLife().isAlife(), !unit.dead());
     unit.attack(&unit2);
     EXPECT_EQ(unit2.getLife().isAlife(), !unit2.dead());
-    EXPECT_TRUE(unit2.dead());
+    EXPECT_FALSE(unit2.dead());
 }
 
 //TEST(Game, test) {
@@ -69,11 +68,11 @@ GenericUnit unit2(Life(2), false, 1);
 //}
 
 TEST (Army, test) {
-Cell cell(1, 2);
-Cell cell2(2, 1);
-std::shared_ptr<CArmy> army(new Army(nullptr, cell));
-std::shared_ptr<CArmy> current(new MovingArmy(army));
-Fraction *fraction = new American();
+    Cell cell(1, 2);
+    Cell cell2(2, 1);
+    std::shared_ptr<CArmy> army(new Army(nullptr, cell));
+    std::shared_ptr<CArmy> current(new MovingArmy(army));
+    Fraction *fraction = new American();
     IUnit *first = fraction->create_warrior();
     EXPECT_EQ(current->getCurrentCell(), cell);
     current->move(cell2);
@@ -128,11 +127,23 @@ TEST (Reader, Reader) {
 }
 
 
-TEST(fight, army
-){
-std::shared_ptr<CArmy> army(new Army(new Warrior(Life(10), 15), Cell(1, 2), 0));
-std::shared_ptr<CArmy> army2(new Army(new Warrior(Life(10), 5), Cell(1, 2), 0));
-army->
-fight(army2);
+TEST(fight, army) {
+    std::shared_ptr<CArmy> army(new Army(new Warrior(Life(10), 15), Cell(1, 2), 0));
+    std::shared_ptr<CArmy> army2(new Army(new Warrior(Life(10), 5), Cell(1, 2), 0));
+    army->fight(army2);
+    EXPECT_EQ(army->getId(), 0);
+    EXPECT_EQ(army2->getId(), 0);
+    EXPECT_EQ(army2->getCurrentCell(), Cell(1, 2));
+    EXPECT_EQ(army->getCurrentCell(), Cell(1, 2));
+}
 
+TEST(Player, player) {
+    Player player1(new American());
+    Player player2(new Russian());
+    player1.addArmy(player1.getFraction()->create_archer(), Cell(0, 1));
+    player1.addUnit(player1.getFraction()->create_flayer(), 0);
+    player2.addArmy(player2.getFraction()->create_flayer(), Cell(1, 2));
+    player1.attackArmy(0, player2, 0);
+    EXPECT_EQ(player1.getArmyNumbers(), std::vector<int>({0}));
+    EXPECT_EQ(player2.getArmyNumbers(), std::vector<int>());
 }
