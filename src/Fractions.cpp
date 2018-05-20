@@ -2,78 +2,53 @@
 // Created by iesek on 19.03.2018.
 //
 
+#include <Player.h>
 #include "Fractions.h"
 
-Russian::Russian(CPosition *position, Player *player,
-                 std::shared_ptr<Reader> reader) : _player(player), reader(
-        std::move(reader)) {
-    Russian::defaultPosition = position;
-}
+Russian::Russian(std::shared_ptr<Reader> reader) : reader(
+        std::move(reader)) {}
 
-Warrior *Russian::create_warrior() {
+Warrior *Russian::create_warrior() const {
     reader->readRussianWarrior();
-    return new Warrior(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
-                       reader->getDefence(), reader->getMoveDistance(),
-                       reader->getAttackDistance(), reader->getCounterattackDamage());
+    return new Warrior(Life(reader->getMaxLives()), reader->getAttack());
 }
 
-Archer *Russian::create_archer() {
+Archer *Russian::create_archer() const {
     reader->readRussianArcher();
-    return new Archer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
-                      reader->getDefence(), reader->getMoveDistance(),
-                      reader->getAttackDistance(), reader->getCounterattackDamage());
+    return new Archer(Life(reader->getMaxLives()), reader->getAttack());
 }
 
-Flyer *Russian::create_flayer() {
+Flyer *Russian::create_flayer() const {
     reader->readRussianFlyer();
-    return new Flyer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
-                     reader->getDefence(), reader->getMoveDistance(),
-                     reader->getAttackDistance(), reader->getCounterattackDamage());
+    return new Flyer(Life(reader->getMaxLives()), reader->getAttack());
 }
 
-CPosition *Russian::getDefaultPosition() {
-    return defaultPosition;
-}
-
-Russian::Russian(CPosition *position, Player *player)
-        : Russian(position, player, std::make_shared<ConstantsReader>()) {}
+Russian::Russian()
+        : Russian(std::make_shared<ConstantsReader>()) {}
 
 Russian::~Russian() = default;
 
 
-American::American(CPosition *position, Player *player,
-                   std::shared_ptr<Reader> reader) : _player(player), reader(
-        std::move(reader)) {
-    defaultPosition = position;
-}
+American::American(std::shared_ptr<Reader> reader) : reader(
+        std::move(reader)) {}
 
-Warrior *American::create_warrior() {
+Warrior *American::create_warrior() const {
     reader->readAmericanWarrior();
-    return new Warrior(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
-                       reader->getDefence(), reader->getMoveDistance(),
-                       reader->getAttackDistance(), reader->getCounterattackDamage());
+    return new Warrior(Life(reader->getMaxLives()), reader->getAttack());
 }
 
-Archer *American::create_archer() {
+Archer *American::create_archer() const {
     reader->readAmericanArcher();
-    return new Archer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
-                      reader->getDefence(), reader->getMoveDistance(),
-                      reader->getAttackDistance(), reader->getCounterattackDamage());
+    return new Archer(Life(reader->getMaxLives()), reader->getAttack());
 }
 
-Flyer *American::create_flayer() {
+Flyer *American::create_flayer() const {
     reader->readAmericanFlyer();
-    return new Flyer(defaultPosition, _player, Life(reader->getMaxLives()), true, true, reader->getAttack(),
-                     reader->getDefence(), reader->getMoveDistance(),
-                     reader->getAttackDistance(), reader->getCounterattackDamage());
+    return new Flyer(Life(reader->getMaxLives()), reader->getAttack());
 }
 
-CPosition *American::getDefaultPosition() {
-    return defaultPosition;
-}
-
-American::American(CPosition *position, Player *player)
-        : American(position, player, std::make_shared<ConstantsReader>()) {}
+American::American()
+        : American(std::make_shared<ConstantsReader>()) {}
 
 American::~American() = default;
 

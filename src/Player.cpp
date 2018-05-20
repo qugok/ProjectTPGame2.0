@@ -1,57 +1,59 @@
 //
-// Created by iesek on 19.03.2018.
-//
+// Created by ies
 
-
+#include <Army.h>
 #include "Player.h"
-
-Player::Player(Fraction *fraction){
-    Player::fraction = fraction;
-}
-
-void Player::addWarior() {
-    Player::_units.push_back(fraction->create_warrior());
-}
-
-void Player::addArcher()
-{
-    Player::_units.push_back(fraction->create_archer());
-}
-void Player::addFlyer()
-{
-    Player::_units.push_back(fraction->create_flayer());
-}
-
-void Player::step() {
-    for (int i = 0; i < _units.size();) {
-        IUnit *unit = _units[i];
-        unit->step();
-        if (unit->dead()) {
-            unit->getPosition()->clear();
-            delete unit;
-            _units.erase(_units.begin() + i);
-        } else
-            i++;
-    }
-}
-
-bool Player::dead() const {
-    return _units.empty();
-}
-
-const std::vector<IUnit *> &Player::getUnits() const {
-    return _units;
-}
-
-Fraction *Player::getFraction() {
-    return fraction;
-}
+#include <MovingArmy.h>
+#include <StayingArmy.h>
 
 Player::~Player() {
-    for (IUnit *i : _units) {
-        delete i;
-        i = nullptr;
-    }
     delete fraction;
 }
+
+void Player::isEmpty(int id) {
+    armies[id].reset();
+    this->armies.erase(id);
+}
+
+void Player::addArmy(IUnit *unit, const Cell &cell) {
+    if (armies.empty()) {
+        std::shared_ptr<CArmy> temp(new Army(unit, cell, 0));
+        temp->addObserver(this);
+        armies[temp->getId()] = temp;
+    } else {
+        std::shared_ptr<CArmy> temp(new Army(unit, cell, armies.rbegin()->first + 1));
+        temp->addObserver(this);
+        armies[temp->getId()] = temp;
+    }
+}
+
+void Player::addUnit(IUnit *unit, int armyId) {
+    if (armies.find(armyId) == armies.end())
+        return;
+    armies[armyId]->add(unit);
+}
+
+void Player::moveArmy(int armyId, const Cell &cell) {
+    std::shared_ptr<CArmy> current(new MovingArmy(armies[armyId]));
+    current->move(cell);
+}
+
+void Player::attackArmy(int armyId, const Player &opponent, int targetId) {
+    std::shared_ptr<CArmy> current(new StayingArmy(armies[armyId]));
+    if (opponent.armies.find(targetId) != opponent.armies.end())
+        current->fight(opponent.armies.at(targetId));
+}
+
+std::vector<int> Player::getArmyNumbers() const {
+    std::vector<int> answer;
+    for (auto it : armies)
+        answer.push_back(it.first);
+    return answer;
+}
+
+Fraction *Player::getFraction() const {
+    return this->fraction;
+}
+
+Player::Player(Fraction *fraction) : fraction(fraction) {}
 

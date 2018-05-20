@@ -1,26 +1,30 @@
 #pragma once
 
-#include <Cell.h>
 #include <memory>
-#include <set>
+#include "IUnit.h"
+#include "Cell.h"
+#include "IObserver.h"
 
 class CArmy {
 public:
 
-    virtual bool canMove(Cell cell) const = 0;
+    virtual void move(const Cell &cell) = 0;
 
-    virtual void move(const std::shared_ptr<Cell> &cell) = 0;
+    virtual const Cell &getCurrentCell() const = 0;
 
-    virtual void add(std::shared_ptr<CArmy> army) = 0;
+    virtual void add(IUnit *unit) = 0;
 
-    virtual void attack(CArmy *army) = 0;
+    virtual void fight(const std::shared_ptr<CArmy> &army) = 0;
 
-    virtual void unionWith(CArmy *army) = 0;
+    virtual void addObserver(IObserver *observer) = 0;
 
-    virtual int getStepDistance() const = 0;
+    virtual ~CArmy() = 0;
 
-    virtual std::shared_ptr<Cell> getCurrentCell() = 0;
+    virtual int getId() const = 0;
 
-    virtual std::set<std::shared_ptr<CArmy>> getChildren() const = 0;
+    virtual void isEmpty() = 0;
 
+    virtual std::vector<std::shared_ptr<IUnit>> &get_unit() = 0;
 };
+
+inline CArmy::~CArmy() = default;

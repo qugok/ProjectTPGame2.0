@@ -5,17 +5,19 @@ cmake_minimum_required(VERSION 3.9)
 #include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 #find_package(gtest)
+find_package(gtest REQUIRED)
 #
-add_subdirectory(
-        C:/Users/iesek/CLionProjects/googletest/googletest
-        ${CMAKE_CURRENT_BINARY_DIR}/gtest)
+#add_subdirectory(
+#        C:/Users/iesek/CLionProjects/googletest/googletest
+#        ${CMAKE_CURRENT_BINARY_DIR}/gtest)
 
 
+#target_link_libraries(runBasicTests )
 #add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/.. ${CMAKE_CURRENT_BINARY_DIR})
 
 #file(SOURCES GRUB ./tests/*.cpp)
 
-include_directories(./../include)
+#target_include_directories(runBasicTests ./../include)
 #
 
 file(GLOB_RECURSE SOURSES . ../src/*.cpp)
@@ -31,6 +33,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 add_executable(runBasicTests tests.cpp main.cpp ${SOURSES})
 
 
+target_include_directories(runBasicTests PUBLIC ./../include)
 #target_link_libraries(runBasicTests gtest ${SOURSES})
 
 target_link_libraries(runBasicTests gtest)

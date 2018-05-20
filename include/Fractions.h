@@ -10,46 +10,36 @@
 #include "Fraction.h"
 #include "Units.h"
 
-class CPosition;
-
 class Russian : public Fraction {
 private:
-    CPosition* defaultPosition;
-    Player *_player;
     std::shared_ptr<Reader> reader;
 public:
-    Russian(CPosition *position, Player *player, std::shared_ptr<Reader> reader);
+    Russian(std::shared_ptr<Reader> reader);
 
-    Russian(CPosition *position, Player *player);
+    Russian();
 
-    Warrior *create_warrior() override;
+    Warrior *create_warrior() const override;
 
-    Archer *create_archer() override;
+    Archer *create_archer() const override;
 
-    Flyer *create_flayer() override;
-
-    CPosition *getDefaultPosition() override;
+    Flyer *create_flayer() const override;
 
     ~Russian() override;
 };
 
 class American : public Fraction {
 private:
-    CPosition* defaultPosition;
-    Player *_player;
     std::shared_ptr<Reader> reader;
 public:
-    American(CPosition *position, Player *player, std::shared_ptr<Reader> reader);
+    American(std::shared_ptr<Reader> reader);
 
-    American(CPosition *position, Player *player);
+    American();
 
-    Warrior *create_warrior() override;
+    Warrior *create_warrior() const override;
 
-    Archer *create_archer() override;
+    Archer *create_archer() const override;
 
-    Flyer *create_flayer() override;
-
-    CPosition *getDefaultPosition() override;
+    Flyer *create_flayer() const override;
 
     ~American() override;
 };

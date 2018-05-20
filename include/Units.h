@@ -5,33 +5,31 @@
 #pragma once
 
 #include "GenericUnit.h"
-#include "CPosition.h"
 
 class Warrior : public GenericUnit {
 
 public:
-    Warrior(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
-            int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
+    Warrior(const Life &_life, int _attackPoints);
 
+    bool canAttack(IUnit *unit) const override;
 //    explicit Warrior(CPosition *_position);
 };
 
 class Flyer : public GenericUnit {
 
 public:
-    Flyer(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
-          int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
+    Flyer(const Life &_life, int _attackPoints);
 
 //    explicit Flyer(CPosition *_position);
-
+    bool canAttack(IUnit *unit) const override;
 
 };
 
 class Archer : public GenericUnit {
 
 public:
-    Archer(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
-           int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage);
+    Archer(const Life &_life, int _attackPoints);
 
+    bool canAttack(IUnit *unit) const override;
 //    explicit Archer(CPosition *_position);
 };

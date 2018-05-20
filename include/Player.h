@@ -2,31 +2,37 @@
 // Created by iesek on 19.03.2018.
 //
 
-// TODO переписать плеера с учетом армий (не к 2 дедлайну)
-
-
 #pragma once
 
 #include "IUnit.h"
 #include "Fraction.h"
+#include "CArmy.h"
+#include "IObserver.h"
 #include <vector>
+#include <map>
 
-class Player {
-private:
-    std::vector<IUnit*> _units;
-    Fraction* fraction;
+class Player : public IObserver {
 public:
-    Fraction *getFraction();
 
-    explicit Player(Fraction *fraction);
-    void addWarior();
-    void addArcher();
-    void addFlyer();
-    void step();
+    ~Player() override;
 
-    const std::vector<IUnit *> &getUnits() const;
+    void addArmy(IUnit *unit, const Cell &cell);
 
-    bool dead() const;
+    void isEmpty(int id) override;
 
-    virtual ~Player();
+    void addUnit(IUnit *unit, int armyId);
+
+    void moveArmy(int armyId, const Cell &cell);
+
+    void attackArmy(int armyId, const Player &opponent, int targetId);
+
+    std::vector<int> getArmyNumbers() const;
+
+    Fraction *getFraction() const;
+
+    Player(Fraction *fraction);
+
+private:
+    std::map<int, std::shared_ptr<CArmy>> armies;
+    Fraction* fraction;
 };

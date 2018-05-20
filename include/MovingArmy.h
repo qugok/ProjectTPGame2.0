@@ -1,26 +1,28 @@
 #pragma once
 
-#include "Armies.h"
+#include "Army.h"
 
-class MovingArmy : public Army {
+class MovingArmy : public CArmy {
 public:
     explicit MovingArmy(const std::shared_ptr<CArmy> &m_army);
 
-    void add(std::shared_ptr<CArmy> army) override;
+    void move(const Cell &cell) override;
 
-    void unionWith(CArmy *army) override;
+    const Cell &getCurrentCell() const override;
 
-    bool canMove(Cell cell) const override;
+    void fight(const std::shared_ptr<CArmy> &army) override;
 
-    void move(const std::shared_ptr<Cell> &cell) override;
+    ~MovingArmy() override;
 
-    std::shared_ptr<Cell> getCurrentCell() override;
+    void isEmpty() override;
 
-    int getStepDistance() const override;
+    int getId() const override;
 
-    std::set<std::shared_ptr<CArmy>> getChildren() const override;
+    std::vector<std::shared_ptr<IUnit>> &get_unit() override;
 
-    void attack(CArmy *army) override;
+    void add(IUnit *unit) override;
+
+    void addObserver(IObserver *observer) override;
 
 private:
     std::shared_ptr<CArmy> m_army;

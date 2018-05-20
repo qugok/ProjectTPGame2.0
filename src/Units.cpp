@@ -8,11 +8,11 @@
 
 #include "Units.h"
 
-Warrior::Warrior(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited,
-                 int _attackPoints,
-                 int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage) : GenericUnit(
-        _position, player, _life, _isMoved, _isHited, false, _attackPoints, _defencePoints, _moveDistance,
-        _attackDiatance, _counterattackDamage) {}
+Warrior::Warrior(const Life &_life, int _attackPoints) : GenericUnit(_life, false, _attackPoints) {}
+
+bool Warrior::canAttack(IUnit *unit) const {
+    return !unit->isFlying();
+}
 
 //Warrior::Warrior(CPosition *_position) : GenericUnit(
 //        _position, Life(cMaxLives), true, true, false, cAttack, cDefence, cMoveDistance,
@@ -20,10 +20,11 @@ Warrior::Warrior(CPosition *_position, Player *player, const Life &_life, bool _
 
 
 
-Flyer::Flyer(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
-             int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage) : GenericUnit(
-        _position, player, _life, _isMoved, _isHited, true, _attackPoints, _defencePoints, _moveDistance,
-        _attackDiatance, _counterattackDamage) {}
+Flyer::Flyer(const Life &_life, int _attackPoints) : GenericUnit(_life, true, _attackPoints) {}
+
+bool Flyer::canAttack(IUnit *unit) const {
+    return true;
+}
 
 //Flyer::Flyer(CPosition *_position) : GenericUnit(
 //        _position, Life(cMaxLives), true, true, true, cAttack, cDefence, cMoveDistance,
@@ -31,10 +32,11 @@ Flyer::Flyer(CPosition *_position, Player *player, const Life &_life, bool _isMo
 
 
 
-Archer::Archer(CPosition *_position, Player *player, const Life &_life, bool _isMoved, bool _isHited, int _attackPoints,
-               int _defencePoints, int _moveDistance, int _attackDiatance, int _counterattackDamage) : GenericUnit(
-        _position, player, _life, _isMoved, _isHited, false, _attackPoints, _defencePoints, _moveDistance,
-        _attackDiatance, _counterattackDamage) {}
+Archer::Archer(const Life &_life, int _attackPoints) : GenericUnit(_life, false, _attackPoints) {}
+
+bool Archer::canAttack(IUnit *unit) const {
+    return true;
+}
 
 //Archer::Archer(CPosition *_position) : GenericUnit(
 //            _position, Life(cMaxLives), true, true, false, cAttack, cDefence, cMoveDistance,

@@ -13,6 +13,18 @@ public:
 
     int getDistanceTo(Cell cell);
 
+    bool operator<(const Cell &rhs) const;
+
+    bool operator>(const Cell &rhs) const;
+
+    bool operator<=(const Cell &rhs) const;
+
+    bool operator>=(const Cell &rhs) const;
+
+    bool operator==(const Cell &rhs) const;
+
+    bool operator!=(const Cell &rhs) const;
+
 private:
     int x;
     int y;
